@@ -5,7 +5,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 
 
 	public $postageParcelURL = 'http://auspost.com.au/api/postage/parcel/domestic/calculate.json';
-	public $postage_domestic_url = 'https://auspost.com.au/api/postage/parcel/domestic/service';
+	//public $postage_domestic_urlpostageParcelURL = 'https://auspost.com.au/api/postage/parcel/domestic/service';
 	public $postage_intl_url = 'https://auspost.com.au/api/postage/parcel/international/service.json';
 	
 	public $api_key = '20b5d076-5948-448f-9be4-f2fd20d4c258';
@@ -138,9 +138,9 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 			<h3>Notes: </h3>
 			<ol>
 				<li><a target="_blank" href="http://auspost.com.au/parcels-mail/size-and-weight-guidelines.html">Weight and Size Guidlines </a>from Australia Post.</li>
-				<li>Do you ship internationally? Do you charge handling fees? <a href="http://waseem-senjer.com/product/australian-post-woocommerce-extension-pro/" target="_blank">Get the PRO</a> version from this plugin with other cool features for <span style="color:green;">only 9$</span> </li>
+				<!-- <li>Do you ship internationally? Do you charge handling fees? <a href="http://waseem-senjer.com/product/australian-post-woocommerce-extension-pro/" target="_blank">Get the PRO</a> version from this plugin with other cool features for <span style="color:green;">only 9$</span> </li> -->
 				<li>If you encountered any problem with the plugin, please do not hesitate <a target="_blank" href="http://waseem-senjer.com/submit-ticket/">submitting a support ticket</a>.</li>
-				<li>If you like the plugin please leave us a <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/australian-post-woocommerce-extension?filter=5#postform">★★★★★</a> rating. A huge thank you from me in advance!</li>
+				<li>If you like the plugin please leave me a <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/australian-post-woocommerce-extension?filter=5#postform">★★★★★</a> rating. A huge thank you from me in advance!</li>
 				
 			</ol>
 
@@ -191,12 +191,13 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 		$length = 0;
 		$width = 0;
 		$height = 0;
+
 		foreach($package['contents'] as  $item_id => $values){
 			$_product =  $values['data'];
-			$weight = $weight + $_product->get_weight();
-			$height = $height + $_product->height;
-			$width = $width + $_product->width;
-			$length = $length + $_product->length;
+			$weight = $weight + ($_product->get_weight() );
+			$height = $height + ($_product->height  );
+			$width = $width + ($_product->width );
+			$length = $length + ($_product->length );
 
 		}
 
@@ -219,48 +220,28 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 			$query_params['height'] = $height;
 			$query_params['weight'] = $weight;
 			
-			//$query_params['service_code'] = 'AUS_PARCEL_REGULAR';
-
-			$response = wp_remote_get( $this->postage_domestic_url.'?'.http_build_query($query_params),
-				array('headers' => array(
-					'AUTH-KEY'=> $this->api_key
-					))
-
-			 );
 			
-			if(is_wp_error( $response )){
-				wc_add_notice('Unknown Problem. Please Contact the admin','error');
-				return;
-			}
+			foreach($this->supported_services as $service_key => $service_name):
+					$query_params['service_code'] = $service_key;
+					$response = wp_remote_get( $this->postageParcelURL.'?'.http_build_query($query_params),
+						array('headers' => array(
+							  'AUTH-KEY'=> $this->api_key
+					)));
+					if(is_wp_error( $response )){
+						wc_add_notice('Unknown Problem. Please Contact the admin','error');
+						return;
+					}
 
-			$aus_response = json_decode(wp_remote_retrieve_body($response));
-			
-			
-			if($aus_response->services){
-				foreach($aus_response->services->service as $service){
-
-						if( $this->supported_services[$service->code]!=''){
-							var_dump($service);
-							$this->add_rate(array(
-								'id' => $service->code,
-								'label' => 'Australia ' . $this->supported_services[$service->code].' '.$service->delivery_time, //( '.$service->delivery_time.' )
-								'cost' =>  $service->price , 
+					$aus_response = json_decode(wp_remote_retrieve_body($response));
+					
+						$this->add_rate(array(
+								'id' => $service_key,
+								'label' => 'Australia ' . $aus_response->postage_result->service.' ('.$aus_response->postage_result->delivery_time.')', //( '.$service->delivery_time.' )
+								'cost' =>  $aus_response->postage_result->total_cost , 
 								
 							)); 
-					}
-				}
-			}
-			
-		
-		/*if($aus_response->error){
-			wc_add_notice($aus_response->error->errorMessage,'error');
-			return;
-		}
-
-		if($aus_response->error){
-			wc_add_notice($aus_response->error->details->errorMessage,'error');
-			return;
-		}*/
+					
+			endforeach;
 
 
 	}

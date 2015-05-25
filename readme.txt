@@ -51,8 +51,12 @@ This is a key that you must get it from Australian Post so you can use their API
 
 == Changelog ==
 
+= 1.1.0 =
+* Added default packaging options
+* Performance improvments
+* Fixing some minor bugs
 
-= 1.0 =
+= 1.0.0 =
 * Initial release.
 
 == Upgrade Notice == 
