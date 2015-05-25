@@ -30,17 +30,3 @@ if(in_array('woocommerce/woocommerce.php', $active_plugins)){
 	}
 
 }
-
-
-require 'update_checker/plugin-update-checker.php';
-$myUpdateChecker = PucFactory::buildUpdateChecker(
-    'http://www.waseem-senjer.com/plugins/auspost/metadata.json',
-    __FILE__
-);
-
-
-//add_action('wp_loaded', 'check_auspost_key');
-function check_auspost_key(){
-	
-}
-
