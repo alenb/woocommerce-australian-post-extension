@@ -234,14 +234,28 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 
 					$aus_response = json_decode(wp_remote_retrieve_body($response));
 					
+
+					
+					if(!$aus_response->error){
+						
+					
 						$this->add_rate(array(
 								'id' => $service_key,
 								'label' => 'Australia ' . $aus_response->postage_result->service.' ('.$aus_response->postage_result->delivery_time.')', //( '.$service->delivery_time.' )
 								'cost' =>  $aus_response->postage_result->total_cost , 
 								
-							)); 
+						)); 
+					}else{
+
+							wc_add_notice($aus_response->error->errorMessage,'error');
+							return;
+						
+						 
+					}
 					
 			endforeach;
+
+
 
 
 	}
