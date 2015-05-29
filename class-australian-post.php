@@ -4,7 +4,8 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 
 
 
-	public $postageParcelURL = 'http://auspost.com.au/api/postage/parcel/domestic/calculate.json';
+	//public $postageParcelURL = 'http://auspost.com.au/api/postage/parcel/domestic/calculate.json';
+	public $postageParcelURL = 'http://127.0.0.1/auspost/api.php';
 	//public $postage_domestic_urlpostageParcelURL = 'https://auspost.com.au/api/postage/parcel/domestic/service';
 	public $postage_intl_url = 'https://auspost.com.au/api/postage/parcel/international/service.json';
 	
@@ -194,42 +195,49 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 
 		foreach($package['contents'] as  $item_id => $values){
 			$_product =  $values['data'];
-			$weight = $weight + ($_product->get_weight() );
-			$height = $height + ($_product->height  );
-			$width = $width + ($_product->width );
-			$length = $length + ($_product->length );
+			
+			//
 
+			$weight =   ((($_product->get_weight() == '')?$this->default_weight:$_product->get_weight()));
+			$height = ( (($_product->height == '')?$this->default_height:$_product->height));
+			$width =  ((($_product->width == '')?$this->default_width:$_product->width));
+			$length =  ((($_product->length == '')?$this->default_length:$_product->length));
+			$rates = $this->get_rates($rates, $item_id, $values['quantity'], $weight, $height, $width, $length, $package['destination']['postcode'] );
+			if(isset($rates['error'])){
+				wc_add_notice($rates['error'],'error');
+				return;
+			}
+			
+		}
+		
+		// @TODO 
+		// When order same product (2 quantities) height = 85
+		// The API will return "The width cannot exceed 105cm."
+		
+		foreach ($rates as $key => $rate) {
+			
+			$this->add_rate($rate);
 		}
 
-		$weight = ($weight === 0)?$this->default_weight:$weight;
-		$length = ($length === 0)?$this->default_length:$length;
-		$width = ($width === 0)?$this->default_width:$width;
-		$height = ($height === 0)?$this->default_height:$height;
+	}
 
 
 
 
+	private function get_rates( $old_rates, $item_id, $quantity, $weight, $height, $width, $length, $destination ){
 
+		$query_params['from_postcode'] = $this->shop_post_code;
+		$query_params['to_postcode'] = $destination;
+		$query_params['length'] = $length;
+		$query_params['width'] = $width;
+		$query_params['height'] = $height;
+		$query_params['weight'] = $weight;
 
-		
-			//domestic
-			$query_params['from_postcode'] = $this->shop_post_code;
-			$query_params['to_postcode'] = $package['destination']['postcode'];
-			$query_params['length'] = $length;
-			$query_params['width'] = $width;
-			$query_params['height'] = $height;
-			$query_params['weight'] = $weight;
-			
-			
-			foreach($this->supported_services as $service_key => $service_name):
+		foreach($this->supported_services as $service_key => $service_name):
 					$query_params['service_code'] = $service_key;
-					$response = wp_remote_get( $this->postageParcelURL.'?'.http_build_query($query_params),
-						array('headers' => array(
-							  'AUTH-KEY'=> $this->api_key
-					)));
+					$response = wp_remote_get( $this->postageParcelURL.'?'.http_build_query($query_params),array('headers' => array('AUTH-KEY'=> $this->api_key)));
 					if(is_wp_error( $response )){
-						wc_add_notice('Unknown Problem. Please Contact the admin','error');
-						return;
+						return array('error' => 'Unknown Problem. Please Contact the admin');		
 					}
 
 					$aus_response = json_decode(wp_remote_retrieve_body($response));
@@ -237,27 +245,22 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 
 					
 					if(!$aus_response->error){
-						
-					
-						$this->add_rate(array(
+					// add the rate if the API request succeeded
+						$rates[$service_key] = array(
 								'id' => $service_key,
 								'label' => 'Australia ' . $aus_response->postage_result->service.' ('.$aus_response->postage_result->delivery_time.')', //( '.$service->delivery_time.' )
-								'cost' =>  $aus_response->postage_result->total_cost , 
-								
-						)); 
-					}else{
-
-							wc_add_notice($aus_response->error->errorMessage,'error');
-							return;
-						
+								'cost' =>  $aus_response->postage_result->total_cost * $quantity + $old_rates[$service_key]['cost'], 
+						);
 						 
+					// if the API returned any error, show it to the user	
+					}else{
+						return array('error' => $aus_response->error->errorMessage);
+ 
 					}
 					
 			endforeach;
 
-
-
-
+			return $rates;
 	}
 
 
