@@ -4,8 +4,8 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 
 
 
-	//public $postageParcelURL = 'http://auspost.com.au/api/postage/parcel/domestic/calculate.json';
-	public $postageParcelURL = 'http://127.0.0.1/auspost/api.php';
+	public $postageParcelURL = 'http://auspost.com.au/api/postage/parcel/domestic/calculate.json';
+	
 	//public $postage_domestic_urlpostageParcelURL = 'https://auspost.com.au/api/postage/parcel/domestic/service';
 	public $postage_intl_url = 'https://auspost.com.au/api/postage/parcel/international/service.json';
 	
