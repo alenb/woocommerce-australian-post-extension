@@ -210,9 +210,6 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 			
 		}
 		
-		// @TODO 
-		// When order same product (2 quantities) height = 85
-		// The API will return "The width cannot exceed 105cm."
 		
 		foreach ($rates as $key => $rate) {
 			
