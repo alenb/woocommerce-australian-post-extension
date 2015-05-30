@@ -50,7 +50,9 @@ This is a key that you must get it from Australian Post so you can use their API
 
 
 ## Changelog
-
+### 1.3.0
+* Fixing the quantity bug
+* Fixing other minor bugs
 ### 1.1.0 
 * Added default packaging options
 * Performance improvments
