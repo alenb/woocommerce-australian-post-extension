@@ -210,11 +210,12 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 			
 		}
 		
-		
-		foreach ($rates as $key => $rate) {
-			
-			$this->add_rate($rate);
+		if(!empty($rates)){
+			foreach ($rates as $key => $rate) {
+				$this->add_rate($rate);
+			}
 		}
+		
 
 	}
 
