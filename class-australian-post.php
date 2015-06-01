@@ -198,11 +198,11 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 			
 			//
 
-			$weight =   ((($_product->get_weight() == '')?$this->default_weight:$_product->get_weight()));
+			$weight =   ((($_product->get_weight() == '')?$this->default_weight:$_product->get_weight())) * $values['quantity'];
 			$height = ( (($_product->height == '')?$this->default_height:$_product->height));
 			$width =  ((($_product->width == '')?$this->default_width:$_product->width));
-			$length =  ((($_product->length == '')?$this->default_length:$_product->length));
-			$rates = $this->get_rates($rates, $item_id, $values['quantity'], $weight, $height, $width, $length, $package['destination']['postcode'] );
+			$length =  ((($_product->length == '')?$this->default_length:$_product->length)) * $values['quantity'];
+			$rates = $this->get_rates($rates, $item_id, $weight, $height, $width, $length, $package['destination']['postcode'] );
 			if(isset($rates['error'])){
 				wc_add_notice($rates['error'],'error');
 				return;
@@ -222,7 +222,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 
 
 
-	private function get_rates( $old_rates, $item_id, $quantity, $weight, $height, $width, $length, $destination ){
+	private function get_rates( $old_rates, $item_id, $weight, $height, $width, $length, $destination ){
 
 		$query_params['from_postcode'] = $this->shop_post_code;
 		$query_params['to_postcode'] = $destination;
@@ -247,7 +247,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 						$rates[$service_key] = array(
 								'id' => $service_key,
 								'label' => 'Australia ' . $aus_response->postage_result->service.' ('.$aus_response->postage_result->delivery_time.')', //( '.$service->delivery_time.' )
-								'cost' =>  $aus_response->postage_result->total_cost * $quantity + $old_rates[$service_key]['cost'], 
+								'cost' =>  ($aus_response->postage_result->total_cost ) + $old_rates[$service_key]['cost'], 
 						);
 						 
 					// if the API returned any error, show it to the user	
