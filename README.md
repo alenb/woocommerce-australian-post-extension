@@ -4,7 +4,7 @@
 * Tags: woocommerce,shipping, woocommerce extension, australia, australian post
 * Requires at least: 3.5.1
 * Tested up to: 4.2.2
-* Stable tag: 1.1.0
+* Stable tag: 1.3.2
 * License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,10 @@ This is a key that you must get it from Australian Post so you can use their API
 
 
 ## Changelog
+### 1.3.2
+* Fixing the length bug
+
+
 ### 1.3.0
 * Fixing the quantity bug
 * Fixing other minor bugs
@@ -61,5 +65,3 @@ This is a key that you must get it from Australian Post so you can use their API
 ### 1.0.0 
 * Initial release.
 
-## Upgrade Notice
-* Initial release.
