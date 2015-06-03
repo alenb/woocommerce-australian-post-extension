@@ -27,6 +27,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 		$this->title = $this->get_option('title');
 		//$this->api_key = $this->get_option('api_key');
 		$this->shop_post_code = $this->get_option('shop_post_code');
+		$this->tax_status = $this->get_option('tax_status');
 		
 		
 		$this->default_weight = $this->get_option('default_weight');
@@ -75,6 +76,16 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 							'description'       => __( 'Enter your Shop postcode.', 'australian-post' ),
 							'default'           => '2000'
 					),
+					'tax_status' => array(
+								'title'			=> __( 'Tax Status', 'woocommerce' ),
+								'type'			=> 'select',
+								'class'         => 'wc-enhanced-select',
+								'default'		=> 'none',
+								'options'		=> array(
+									'taxable'	=> __( 'Taxable', 'woocommerce' ),
+									'none'		=> _x( 'None', 'Tax status', 'woocommerce' )
+								)
+							),
 					'default_weight' => array(
 							'title'             => __( 'Default Package Weight', 'australian-post' ),
 							'type'              => 'text',
@@ -248,6 +259,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 								'id' => $service_key,
 								'label' => 'Australia ' . $aus_response->postage_result->service.' ('.$aus_response->postage_result->delivery_time.')', //( '.$service->delivery_time.' )
 								'cost' =>  ($aus_response->postage_result->total_cost ) + $old_rates[$service_key]['cost'], 
+								'calc_tax' 	=> 'per_item',
 						);
 						 
 					// if the API returned any error, show it to the user	
