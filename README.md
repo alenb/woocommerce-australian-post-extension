@@ -50,6 +50,12 @@ This is a key that you must get it from Australian Post so you can use their API
 
 
 ## Changelog
+
+### 1.3.4
+* Fixing some bugs
+* Adding the "Debug" mode
+
+
 ### 1.3.2
 * Fixing the length bug
 
