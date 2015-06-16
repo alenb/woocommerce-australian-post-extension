@@ -232,7 +232,12 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 			$weight =   ((($_product->get_weight() == '')?$this->default_weight:$_product->get_weight())) * $values['quantity'];
 			$height = ( (($_product->height == '')?$this->default_height:$_product->height));
 			$width =  ((($_product->width == '')?$this->default_width:$_product->width));
-			$length =  ((($_product->length == '')?$this->default_length:$_product->length)) * $values['quantity'];
+			$length =  ((($_product->length == '')?$this->default_length:$_product->length));
+			$min_dimension = $this->get_min_dimension( $width, $length, $height );
+			$$min_dimension = $$min_dimension * $values['quantity'];
+
+
+
 			$rates = $this->get_rates($rates, $item_id, $weight, $height, $width, $length, $package['destination']['postcode'] );
 			if(isset($rates['error'])){
 				wc_add_notice($rates['error'],'error');
@@ -294,7 +299,21 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 	}
 
 
-	
+	/**
+	 * get_min_dimension function.
+	 * get the minimum dimension of the package, so we multiply it with the quantity
+	 * @access private
+	 * @param number $width
+	 * @param number $length
+	 * @param number $height
+	 * @return string $result
+	 */
+	private function get_min_dimension($width, $length, $height){
+
+		$dimensions = array('width'=>$width,'length'=>$length,'height'=>$height);
+		$result = array_keys($dimensions, min($dimensions));
+		return $result[0];
+	}
 
 
 
