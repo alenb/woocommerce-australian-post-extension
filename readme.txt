@@ -73,4 +73,4 @@ This is a key that you must get it from Australian Post so you can use their API
 * Initial release.
 
 == Upgrade Notice == 
-* The tax option has been added.
+* Debug mode is available now.
