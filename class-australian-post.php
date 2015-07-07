@@ -55,7 +55,9 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 
 	public function init_form_fields(){
 		
-		
+				$dimensions_unit = strtolower( get_option( 'woocommerce_dimension_unit' ) );
+				$weight_unit = strtolower( get_option( 'woocommerce_weight_unit' ) );
+				
 				$this->form_fields = array(
 
 					'enabled' => array(
@@ -97,25 +99,25 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 							'title'             => __( 'Default Package Weight', 'australian-post' ),
 							'type'              => 'text',
 							'default'           => '0.5',
-							'description'       => __( 'KG', 'australian-post' ),
+							'description'       => __( $weight_unit , 'australian-post' ),
 					),
 					'default_width' => array(
 							'title'             => __( 'Default Package Width', 'australian-post' ),
 							'type'              => 'text',
 							'default'           => '5',
-							'description'       => __( 'cm', 'australian-post' ),
+							'description'       => __( $dimensions_unit, 'australian-post' ),
 					),
 					'default_height' => array(
 							'title'             => __( 'Default Package Height', 'australian-post' ),
 							'type'              => 'text',
 							'default'           => '5',
-							'description'       => __( 'cm', 'australian-post' ),
+							'description'       => __( $dimensions_unit, 'australian-post' ),
 					),
 					'default_length' => array(
 							'title'             => __( 'Default Package Length', 'australian-post' ),
 							'type'              => 'text',
 							'default'           => '10',
-							'description'       => __( 'cm', 'australian-post' ),
+							'description'       => __( $dimensions_unit, 'australian-post' ),
 					),
 					'debug_mode' => array(
 						'title' 		=> __( 'Enable Debug Mode', 'woocommerce' ),
@@ -229,10 +231,12 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 			
 			//
 
-			$weight =   ((($_product->get_weight() == '')?$this->default_weight:$_product->get_weight())) * $values['quantity'];
-			$height = ( (($_product->height == '')?$this->default_height:$_product->height));
-			$width =  ((($_product->width == '')?$this->default_width:$_product->width));
-			$length =  ((($_product->length == '')?$this->default_length:$_product->length));
+			$weight = wc_get_weight(((($_product->get_weight() == '')?$this->default_weight:$_product->get_weight())) * $values['quantity'], 'kg');
+			$height = wc_get_dimension(((($_product->height == '')?$this->default_height:$_product->height)), 'cm');
+			$width  = wc_get_dimension(((($_product->width == '')?$this->default_width:$_product->width)), 'cm');
+			$length = wc_get_dimension(((($_product->length == '')?$this->default_length:$_product->length)), 'cm');
+			
+
 			$min_dimension = $this->get_min_dimension( $width, $length, $height );
 			$$min_dimension = $$min_dimension * $values['quantity'];
 
