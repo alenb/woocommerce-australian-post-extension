@@ -218,6 +218,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 	}
 
 	public function calculate_shipping( $package ){
+
 		$this->rates = array();	
 		
 
@@ -265,7 +266,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 	private function get_rates( $old_rates, $item_id, $weight, $height, $width, $length, $destination ){
 
 		$query_params['from_postcode'] = $this->shop_post_code;
-		$query_params['to_postcode'] = $destination;
+		$query_params['to_postcode'] = (isset($destination) && $destination!='')? $destination: $this->shop_post_code;
 		$query_params['length'] = $length;
 		$query_params['width'] = $width;
 		$query_params['height'] = $height;
