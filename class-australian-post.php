@@ -186,7 +186,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 		// The lite version doesn't support international shipping
 		if($package['destination']['country'] != 'AU') return false;
 
-		$weight = 0;
+		/*$weight = 0; 
 		$length = 0;
 		$width = 0;
 		$height = 0;
@@ -198,10 +198,10 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 			$length = $length + $_product->length;
 
 		}
-		$weight = ($weight === 0)?$this->default_weight:$weight;
-		$length = ($length === 0)?$this->default_length:$length;
-		$width = ($width === 0)?$this->default_width:$width;
-		$height = ($height === 0)?$this->default_height:$height;
+		$weight = wc_get_weight( ($weight === 0)?$this->default_weight:$weight;
+		$length = wc_get_dimension( ($length === 0)?$this->default_length:$length;
+		$width =  wc_get_dimension( ($width === 0)?$this->default_width:$width;
+		$height = wc_get_dimension( ($height === 0)?$this->default_height:$height;
 
 
 		//http://auspost.com.au/parcels-mail/size-and-weight-guidelines.html
@@ -210,7 +210,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 			if($weight > 22) return false;
 			if($length > 105) return false;
 			if( (($length * $height * $width)/1000000) > 0.25  ) return false;
-		
+		*/
 
 		return true;
 		
