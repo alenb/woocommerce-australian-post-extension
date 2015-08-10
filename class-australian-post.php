@@ -246,7 +246,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 			$rates = $this->get_rates($rates, $item_id, $weight, $height, $width, $length, $package['destination']['postcode'] );
 			if(isset($rates['error'])){
 				wc_add_notice($rates['error'],'error');
-				return;
+				//return;
 			}
 			
 		}
