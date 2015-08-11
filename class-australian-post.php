@@ -218,7 +218,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 	}
 
 	public function calculate_shipping( $package ){
-		if(is_cart()) return;
+		
 		$this->rates = array();	
 		
 
