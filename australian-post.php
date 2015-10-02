@@ -3,7 +3,7 @@
  * Plugin Name:       Australia Post WooCommerce Extension
  * Plugin URI:        http://waseem-senjer.com/
  * Description:       WooCommerce Australian Post Shipping Method.
- * Version:           1.3.6
+ * Version:           1.3.7
  * Author:            Waseem Senjer
  * Author URI:        http://waseem-senjer.com
  * Text Domain:       australian-post
@@ -13,7 +13,7 @@
  * GitHub Plugin URI: https://github.com/wsenjer/Links-Replacer
  */
 
-
+define('AUSPOST_URL', plugin_dir_url(__FILE__));
 $active_plugins = apply_filters('active_plugins', get_option('active_plugins'));
 if(in_array('woocommerce/woocommerce.php', $active_plugins)){
 

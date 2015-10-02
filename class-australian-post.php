@@ -5,10 +5,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 
 
 	public $postageParcelURL = 'http://auspost.com.au/api/postage/parcel/domestic/calculate.json';
-	
-	//public $postage_domestic_urlpostageParcelURL = 'https://auspost.com.au/api/postage/parcel/domestic/service';
 	public $postage_intl_url = 'https://auspost.com.au/api/postage/parcel/international/service.json';
-	
 	public $api_key = '20b5d076-5948-448f-9be4-f2fd20d4c258';
 	public $supported_services = array( 'AUS_PARCEL_REGULAR' => 'Parcel Post',
 										'AUS_PARCEL_EXPRESS' => 'Express Post');
@@ -25,9 +22,8 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 
 		$this->enabled = $this->get_option('enabled');
 		$this->title = $this->get_option('title');
-		//$this->api_key = $this->get_option('api_key');
+		$this->api_key = $this->get_option('api_key');
 		$this->shop_post_code = $this->get_option('shop_post_code');
-		$this->tax_status = $this->get_option('tax_status');
 		
 		
 		$this->default_weight = $this->get_option('default_weight');
@@ -85,16 +81,6 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 							'description'       => __( 'Enter your Shop postcode.', 'australian-post' ),
 							'default'           => '2000'
 					),
-					'tax_status' => array(
-								'title'			=> __( 'Tax Status', 'woocommerce' ),
-								'type'			=> 'select',
-								'class'         => 'wc-enhanced-select',
-								'default'		=> 'none',
-								'options'		=> array(
-									'taxable'	=> __( 'Taxable', 'woocommerce' ),
-									'none'		=> _x( 'None', 'Tax status', 'woocommerce' )
-								)
-							),
 					'default_weight' => array(
 							'title'             => __( 'Default Package Weight', 'australian-post' ),
 							'type'              => 'text',
@@ -155,18 +141,22 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 			    	<p><?php _e( 'Austrlia Post debug mode is activated, only administrators can use it.', 'australian-post' ); ?></p>
 			    </div>
 			<?php endif; ?>
+			<a href="https://waseem-senjer.com/product/australia-post-woocommerce-extension-pro/" target="_blank">
+				<img style="z-index:99999; width:200px; position:fixed; bottom:5px; right:5px;" src="<?php echo AUSPOST_URL; ?>pro_version.png">
+			</a>
 		<table class="form-table">
 		<?php
 			// Generate the HTML For the settings form.
 			$this->generate_settings_html();
 		?>
+		
 		</table><!--/.form-table-->
 		<p>
 			
 			<h3>Notes: </h3>
 			<ol>
 				<li><a target="_blank" href="http://auspost.com.au/parcels-mail/size-and-weight-guidelines.html">Weight and Size Guidlines </a>from Australia Post.</li>
-				<li>Do you ship internationally? Do you charge handling fees? <a href="http://waseem-senjer.com/product/australian-post-woocommerce-extension-pro/" target="_blank">Get the PRO</a> version from this plugin with other cool features for <span style="color:green;">only 9$</span> </li>
+				
 				<li>If you encountered any problem with the plugin, please do not hesitate <a target="_blank" href="http://waseem-senjer.com/submit-ticket/">submitting a support ticket</a>.</li>
 				<li>If you like the plugin please leave me a <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/australian-post-woocommerce-extension?filter=5#postform">★★★★★</a> rating. A huge thank you from me in advance!</li>
 				
@@ -186,31 +176,6 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 		// The lite version doesn't support international shipping
 		if($package['destination']['country'] != 'AU') return false;
 
-		/*$weight = 0; 
-		$length = 0;
-		$width = 0;
-		$height = 0;
-		foreach($package['contents'] as  $item_id => $values){
-			$_product =  $values['data'];
-			$weight = $weight + $_product->get_weight();
-			$height = $height + $_product->height;
-			$width = $width + $_product->width;
-			$length = $length + $_product->length;
-
-		}
-		$weight = wc_get_weight( ($weight === 0)?$this->default_weight:$weight;
-		$length = wc_get_dimension( ($length === 0)?$this->default_length:$length;
-		$width =  wc_get_dimension( ($width === 0)?$this->default_width:$width;
-		$height = wc_get_dimension( ($height === 0)?$this->default_height:$height;
-
-
-		//http://auspost.com.au/parcels-mail/size-and-weight-guidelines.html
-		
-			//domestic
-			if($weight > 22) return false;
-			if($length > 105) return false;
-			if( (($length * $height * $width)/1000000) > 0.25  ) return false;
-		*/
 
 		return true;
 		
@@ -229,13 +194,10 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 
 		foreach($package['contents'] as  $item_id => $values){
 			$_product =  $values['data'];
-			
-			//
-
-			$weight = wc_get_weight(((($_product->get_weight() == '')?$this->default_weight:$_product->get_weight())) * $values['quantity'], 'kg');
-			$height = wc_get_dimension(((($_product->height == '')?$this->default_height:$_product->height)), 'cm');
-			$width  = wc_get_dimension(((($_product->width == '')?$this->default_width:$_product->width)), 'cm');
-			$length = wc_get_dimension(((($_product->length == '')?$this->default_length:$_product->length)), 'cm');
+			$weight = wc_get_weight(((( intval($_product->get_weight()) <= 0)?$this->default_weight:$_product->get_weight())) * $values['quantity'], 'kg');
+			$height = wc_get_dimension(((( intval($_product->height) <= 0)?$this->default_height:$_product->height)), 'cm');
+			$width  = wc_get_dimension(((( intval($_product->width) <= 0)?$this->default_width:$_product->width)), 'cm');
+			$length = wc_get_dimension(((( intval($_product->length) <= 0)?$this->default_length:$_product->length)), 'cm');
 			
 
 			$min_dimension = $this->get_min_dimension( $width, $length, $height );
