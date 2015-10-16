@@ -183,7 +183,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 	}
 
 	public function calculate_shipping( $package ){
-		
+		$package_details  =  $this->get_package_details( $package );
 		$this->rates = array();	
 		
 
@@ -192,20 +192,15 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 		$width = 0;
 		$height = 0;
 
-		foreach($package['contents'] as  $item_id => $values){
-			$_product =  $values['data'];
-			$weight = wc_get_weight(((( intval($_product->get_weight()) <= 0)?$this->default_weight:$_product->get_weight())) * $values['quantity'], 'kg');
-			$height = wc_get_dimension(((( intval($_product->height) <= 0)?$this->default_height:$_product->height)), 'cm');
-			$width  = wc_get_dimension(((( intval($_product->width) <= 0)?$this->default_width:$_product->width)), 'cm');
-			$length = wc_get_dimension(((( intval($_product->length) <= 0)?$this->default_length:$_product->length)), 'cm');
-			
+		foreach($package_details as  $pack){
 
-			$min_dimension = $this->get_min_dimension( $width, $length, $height );
-			$$min_dimension = $$min_dimension * $values['quantity'];
+			$weight = $pack['weight'];
+			$height = $pack['height'];
+			$width 	= $pack['width'];
+			$length = $pack['length'];
 
 
-
-			$rates = $this->get_rates($rates, $item_id, $weight, $height, $width, $length, $package['destination']['postcode'] );
+			$rates = $this->get_rates($rates, $pack['item_id'], $weight, $height, $width, $length, $package['destination']['postcode'] );
 			/*if(isset($rates['error'])){
 				wc_add_notice($rates['error'],'error');
 				return;
@@ -283,7 +278,103 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 	}
 
 
+/**
+     * get_package_details function.
+     *
+     * @access private
+     * @param mixed $package
+     * @return void
+     */
+    private function get_package_details( $package ) {
+	    global $woocommerce;
 
+	    $parcel   = array();
+	    $requests = array();
+    	$weight   = 0;
+    	$volume   = 0;
+    	$value    = 0;
+    	$products = array();
+    	// Get weight of order
+    	foreach ( $package['contents'] as $item_id => $values ) {
+
+
+    		$weight += woocommerce_get_weight( $values['data']->get_weight(), 'kg' ) * $values['quantity'];
+    		$value  += $values['data']->get_price() * $values['quantity'];
+    		
+    		$length = woocommerce_get_dimension( ($values['data']->length=='')?$this->default_length:$values['data']->length, 'cm' );
+    		$height = woocommerce_get_dimension( ($values['data']->height=='')?$this->default_height:$values['data']->height, 'cm' );
+    		$width = woocommerce_get_dimension( ($values['data']->width=='')?$this->default_width:$values['data']->width, 'cm' );
+    		$min_dimension = $this->get_min_dimension( $width, $length, $height );
+			$$min_dimension = $$min_dimension * $values['quantity'];
+    		$products[] = array('weight'=> woocommerce_get_weight( $values['data']->get_weight(), 'kg' ),
+    							'quantity'=> $values['quantity'],
+    							'length'=> $length,
+    							'height'=> $height,
+    							'width'=> $width,
+    							'item_id'=> $item_id,
+    						);
+    		$volume += ( $length * $height * $width );
+    	}
+
+    	$max_weight = $this->get_max_weight($package);
+
+    	//if($weight > $max_weight){
+    	
+	    	$pack = array();
+			$packs_count = 1;
+			$pack[$packs_count]['weight'] = 0;
+			$pack[$packs_count]['length'] = 0;
+			$pack[$packs_count]['height'] = 0;
+			$pack[$packs_count]['width'] = 0;
+			$pack[$packs_count]['quantity'] = 0;
+			foreach ($products as $product){
+				while ($product['quantity'] != 0) {
+					$pack[$packs_count]['weight'] += $product['weight'];
+					$pack[$packs_count]['length'] = $product['length'];
+					$pack[$packs_count]['height'] = $product['height'];
+					$pack[$packs_count]['width']  =  $product['width'];
+					$pack[$packs_count]['item_id'] =  $product['item_id'];
+					$pack[$packs_count]['quantity'] +=  $product['quantity'];
+					
+
+					if($pack[$packs_count]['weight'] > $max_weight){
+						$pack[$packs_count]['weight'] -=  $product['weight'];
+						$pack[$packs_count]['quantity'] -=  $product['quantity'];
+						$packs_count++;
+						$pack[$packs_count]['weight'] = $product['weight'];
+						$pack[$packs_count]['length'] = $product['length'];
+						$pack[$packs_count]['height'] = $product['height'];
+						$pack[$packs_count]['width'] = $product['width'];
+						$pack[$packs_count]['item_id'] =  $product['item_id'];
+						$pack[$packs_count]['quantity'] =  $product['quantity'];
+					
+					}
+					$product['quantity']--;
+				}
+			}
+		//}
+			
+    	return $pack;
+    }
+
+
+
+    private function get_max_weight( $package){
+    	$max = ( $package['destination']['country'] == 'AU' )? 22:20;
+    	$store_unit = strtolower( get_option('woocommerce_weight_unit') );
+    	
+    	if($store_unit == 'kg')
+    		return $max;
+    	if($store_unit == 'g')
+    		return $max * 1000;
+    	if($store_unit == 'lbs')
+    		return $max * 0.453592;
+    	if($store_unit == 'oz')
+    		return $max * 0.0283495;
+
+    	return $max;
+  
+    }
 
 
 }
