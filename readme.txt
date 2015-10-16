@@ -3,8 +3,8 @@ Contributors: waseem_senjer
 Donate link: http://www.waseem-senjer.com
 Tags: woocommerce,shipping, woocommerce extension, australia, australian post,australia post,shipping method
 Requires at least: 3.5.1
-Tested up to: 4.2.4
-Stable tag: 1.3.7
+Tested up to: 4.3.1
+Stable tag: 1.3.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -51,6 +51,9 @@ This is a key that you must get it from Australian Post so you can use their API
 
 == Changelog ==
 
+= 1.3.8 =
+A critical bug has been fixed.
+
 = 1.3.7 =
 * Fixing a tax issue
 * default dimensions bug fix
@@ -85,4 +88,4 @@ This is a key that you must get it from Australian Post so you can use their API
 * Initial release.
 
 == Upgrade Notice == 
-* Fixing a tax issue
+* It is very important to upgrade, a critical bug has been fixed.
