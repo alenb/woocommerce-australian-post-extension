@@ -29,10 +29,4 @@ if(in_array('woocommerce/woocommerce.php', $active_plugins)){
 		require 'class-australian-post.php';
 	}
 
-   	add_filter('woocommerce_cart_taxes_total','australia_free_post_modify_shipping_tax',10,4);
-	function australia_free_post_modify_shipping_tax($total, $compound, $display, $cart){
-		// @TODO verify australia shipping
-		return $total + (0.1 * $cart->shipping_total);
-	}
-
 }

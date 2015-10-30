@@ -32,8 +32,6 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 		$this->default_height = $this->get_option('default_height');
 
 
-
-
 		$this->debug_mode = $this->get_option('debug_mode');
 		
 		
@@ -246,7 +244,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 								'id' => $service_key,
 								'label' => 'Australia ' . $aus_response->postage_result->service.' ('.$aus_response->postage_result->delivery_time.')', //( '.$service->delivery_time.' )
 								'cost' =>  ($aus_response->postage_result->total_cost ) + $old_rates[$service_key]['cost'], 
-								'calc_tax' 	=> 'per_item',
+							
 						);
 						 
 					// if the API returned any error, show it to the user	
