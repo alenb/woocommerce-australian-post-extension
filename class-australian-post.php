@@ -189,7 +189,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 		$length = 0;
 		$width = 0;
 		$height = 0;
-
+		$rates = array();
 		foreach($package_details as  $pack){
 
 			$weight = $pack['weight'];
@@ -199,10 +199,6 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 
 
 			$rates = $this->get_rates($rates, $pack['item_id'], $weight, $height, $width, $length, $package['destination']['postcode'] );
-			/*if(isset($rates['error'])){
-				wc_add_notice($rates['error'],'error');
-				return;
-			}*/
 			
 		}
 		
