@@ -235,11 +235,12 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 
 					
 					if(!isset($aus_response->error)){
-					// add the rate if the API request succeeded
+						$old_rate = (isset($old_rates[$service_key]['cost']))?$old_rates[$service_key]['cost']:0;
+						// add the rate if the API request succeeded
 						$rates[$service_key] = array(
 								'id' => $service_key,
 								'label' => $this->title. ' ' . $aus_response->postage_result->service.' ('.$aus_response->postage_result->delivery_time.')', //( '.$service->delivery_time.' )
-								'cost' =>  ($aus_response->postage_result->total_cost ) + (isset($old_rates[$service_key]['cost']))?$old_rates[$service_key]['cost']:0, 
+								'cost' =>  ($aus_response->postage_result->total_cost ) + $old_rate, 
 							
 						);
 						 
