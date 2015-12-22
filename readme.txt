@@ -4,7 +4,7 @@ Donate link: http://www.waseem-senjer.com
 Tags: woocommerce,shipping, woocommerce extension, australia, australian post,australia post,shipping method
 Requires at least: 3.5.1
 Tested up to: 4.4
-Stable tag: 1.3.11
+Stable tag: 1.3.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,19 @@ Australian Post WooCommerce Extension is a Wordpress Plugin that integrate the A
 == Description ==
 Australian Post WooCommerce Extension is a Wordpress Plugin that integrate the Australian Post service, it will calculate the shipping cost and the delivery time for your customer. 
  
+= Pro Features =
+[Upgrade to Pro](https://waseem-senjer.com/product/australia-post-woocommerce-extension-pro/ "Upgrade to Australia Post WooCommerce Shipping Pro")
+
+* Adding handling fees to every order.
+* Customized Domestic Shipping Options.
+* Customized International Shipping Options.
+* Showing all or the cheapest option to the user.
+* Sign On Delivery Option
+* Australia Post Domestic Satchels Support.
+* Extra Cover (soon)
+* 24/7 priority support.
+
+[Documentation](https://waseem-senjer.com/plugins/auspost/docs/ "Documentation ")
 
 == Installation ==
 
@@ -42,6 +55,13 @@ Australian Post WooCommerce Extension is a Wordpress Plugin that integrate the A
 4. Activate the plugin in the Plugin dashboard
 
 
+== Screenshots ==
+
+1. Australia Post Shipping Settings Page.
+2. Checkout Page Preview.
+
+
+
 == Frequently Asked Questions ==
 
 = What is API key? =
@@ -51,47 +71,52 @@ This is a key that you must get it from Australian Post so you can use their API
 
 == Changelog ==
 
+= 1.3.12 = 
+* ADDED: Option to Enable/Disable shipping period on checkout page. 
+
+
 = 1.3.11 = 
-Fixed major rating bug
+* FIXED: major rating bug
 
 = 1.3.10 = 
-Fixed warning message issue.
+* FIXED: warning message issue.
 
 = 1.3.9 = 
-Fixed warning message issue.
+* FIXED: warning message issue.
 
 = 1.3.8 =
-A critical bug has been fixed.
+* FIXED: A critical bug
 
 = 1.3.7 =
-* Fixing a tax issue
-* default dimensions bug fix
+* FIXED: tax issue
+* FIXED: default dimensions bug
 
 = 1.3.6 =
-* Fixing debug mode bug
+* FIXED: debug mode bug
 
 
 = 1.3.5 =
-* Fixing a bug in the dimensions other than 'cm'
+* FIXED: a bug in the dimensions other than 'cm'
 
 
 = 1.3.4 =
-* Fixing some bugs
-* Adding the "Debug" mode
+* FIXED: some bugs
+* ADDED: the "Debug" mode
 
 = 1.3.3 =
-* Adding the tax status option
+* ADDED: the tax status option
 
 = 1.3.2 = 
-* Fixing the length bug
+* FIXED: the length bug
 
 = 1.3.0 = 
-* Fixing the quantity bug
-* Fixing other minor bugs
+* FIXED: the quantity bug
+* FIXED: other minor bugs
+
 = 1.1.0 =
-* Added default packaging options
+* ADDED: default packaging options
 * Performance improvments
-* Fixing some minor bugs
+* FIXED: some minor bugs
 
 = 1.0.0 =
 * Initial release.

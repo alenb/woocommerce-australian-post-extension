@@ -4,7 +4,7 @@
 * Tags: woocommerce,shipping, woocommerce extension, australia, australian post
 * Requires at least: 3.5.1
 * Tested up to: 4.4
-* Stable tag: 1.3.11
+* Stable tag: 1.3.12
 * License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,11 @@ This is a key that you must get it from Australian Post so you can use their API
 
 
 ## Changelog
+
+
+= 1.3.12 = 
+* ADDED: Option to Enable/Disable shipping period on checkout page. 
+
 
 ### 1.3.11 
 * Fixed major rating bug

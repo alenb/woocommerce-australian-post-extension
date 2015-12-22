@@ -30,6 +30,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 		$this->default_width = $this->get_option('default_width');
 		$this->default_length = $this->get_option('default_length');
 		$this->default_height = $this->get_option('default_height');
+		$this->show_duration = $this->get_option( 'show_duration' );
 
 
 		$this->debug_mode = $this->get_option('debug_mode');
@@ -109,6 +110,13 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 						'label' 		=> __( 'Enable ', 'woocommerce' ),
 						'default' 		=> 'no',
 						'description'	=> __('If debug mode is enabled, the shipping method will be activated just for the administrator.'),
+					),
+					'show_duration' => array(
+						'title' 		=> __( 'Delivery Time', 'woocommerce' ),
+						'type' 			=> 'checkbox',
+						'label' 		=> __( 'Enable ', 'woocommerce' ),
+						'default' 		=> 'yes',
+						'description'	=> __( 'Show Delivery Time Estimation in the Checkout page.', 'woocommerce' ),
 					),
 
 
@@ -235,11 +243,16 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 
 					
 					if(!isset($aus_response->error)){
+						$duration = '';
+						if($this->show_duration === 'yes'){
+							$duration = ' ('. $aus_response->postage_result->delivery_time .')';
+						}
+
 						$old_rate = (isset($old_rates[$service_key]['cost']))?$old_rates[$service_key]['cost']:0;
 						// add the rate if the API request succeeded
 						$rates[$service_key] = array(
 								'id' => $service_key,
-								'label' => $this->title. ' ' . $aus_response->postage_result->service.' ('.$aus_response->postage_result->delivery_time.')', //( '.$service->delivery_time.' )
+								'label' => $this->title. ' ' . $aus_response->postage_result->service.' ' . $duration,
 								'cost' =>  ($aus_response->postage_result->total_cost ) + $old_rate, 
 							
 						);
@@ -300,7 +313,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
     		$height = woocommerce_get_dimension( ($values['data']->height=='')?$this->default_height:$values['data']->height, 'cm' );
     		$width = woocommerce_get_dimension( ($values['data']->width=='')?$this->default_width:$values['data']->width, 'cm' );
     		$min_dimension = $this->get_min_dimension( $width, $length, $height );
-			$$min_dimension = $$min_dimension * $values['quantity'];
+			//$$min_dimension = $$min_dimension * $values['quantity'];
     		$products[] = array('weight'=> woocommerce_get_weight( $values['data']->get_weight(), 'kg' ),
     							'quantity'=> $values['quantity'],
     							'length'=> $length,
@@ -312,7 +325,6 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
     	}
 
     	$max_weight = $this->get_max_weight($package);
-
     	//if($weight > $max_weight){
     	
 	    	$pack = array();
@@ -321,27 +333,32 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 			$pack[$packs_count]['length'] = 0;
 			$pack[$packs_count]['height'] = 0;
 			$pack[$packs_count]['width'] = 0;
-			$pack[$packs_count]['quantity'] = 0;
+			//$pack[$packs_count]['quantity'] = 0;
 			foreach ($products as $product){
 				while ($product['quantity'] != 0) {
+					if(!isset($pack[$packs_count]['weight'])){
+						$pack[$packs_count]['weight'] = 0;
+					}
+					if(!isset($pack[$packs_count]['quantity'])){
+						//$pack[$packs_count]['quantity'] = 0;
+					}
 					$pack[$packs_count]['weight'] += $product['weight'];
-					$pack[$packs_count]['length'] = $product['length'];
-					$pack[$packs_count]['height'] = $product['height'];
-					$pack[$packs_count]['width']  =  $product['width'];
+					$pack[$packs_count]['length'] =1;// $product['length'];
+					$pack[$packs_count]['height'] =1;// $product['height'];
+					$pack[$packs_count]['width']  =1;//  $product['width'];
 					$pack[$packs_count]['item_id'] =  $product['item_id'];
-					$pack[$packs_count]['quantity'] +=  $product['quantity'];
-					
+					//$pack[$packs_count]['quantity'] +=  $product['quantity'];
 
-					if($pack[$packs_count]['weight'] > $max_weight){
+					if($pack[$packs_count]['weight'] > $max_weight ){
 						$pack[$packs_count]['weight'] -=  $product['weight'];
-						$pack[$packs_count]['quantity'] -=  $product['quantity'];
+						//$pack[$packs_count]['quantity'] -=  $product['quantity'];
 						$packs_count++;
 						$pack[$packs_count]['weight'] = $product['weight'];
-						$pack[$packs_count]['length'] = $product['length'];
-						$pack[$packs_count]['height'] = $product['height'];
-						$pack[$packs_count]['width'] = $product['width'];
+						$pack[$packs_count]['length'] =1;// $product['length'];
+						$pack[$packs_count]['height'] =1;// $product['height'];
+						$pack[$packs_count]['width'] =1;// $product['width'];
 						$pack[$packs_count]['item_id'] =  $product['item_id'];
-						$pack[$packs_count]['quantity'] =  $product['quantity'];
+						//$pack[$packs_count]['quantity'] =  $product['quantity'];
 					
 					}
 					$product['quantity']--;
