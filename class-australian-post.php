@@ -230,7 +230,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 		$query_params['width'] = $width;
 		$query_params['height'] = $height;
 		$query_params['weight'] = $weight;
-
+		print_r($query_params);
 		foreach($this->supported_services as $service_key => $service_name):
 					$query_params['service_code'] = $service_key;
 					$response = wp_remote_get( $this->postageParcelURL.'?'.http_build_query($query_params),array('headers' => array('AUTH-KEY'=> $this->api_key)));
@@ -305,8 +305,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
     	// Get weight of order
     	foreach ( $package['contents'] as $item_id => $values ) {
 
-
-    		$weight += woocommerce_get_weight( $values['data']->get_weight(), 'kg' ) * $values['quantity'];
+    		$weight += woocommerce_get_weight( (floatval($values['data']->get_weight())<=0  )?$this->default_weight:$values['data']->get_weight(), 'kg' ) * $values['quantity'];
     		$value  += $values['data']->get_price() * $values['quantity'];
     		
     		$length = woocommerce_get_dimension( ($values['data']->length=='')?$this->default_length:$values['data']->length, 'cm' );
@@ -314,7 +313,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
     		$width = woocommerce_get_dimension( ($values['data']->width=='')?$this->default_width:$values['data']->width, 'cm' );
     		$min_dimension = $this->get_min_dimension( $width, $length, $height );
 			//$$min_dimension = $$min_dimension * $values['quantity'];
-    		$products[] = array('weight'=> woocommerce_get_weight( $values['data']->get_weight(), 'kg' ),
+    		$products[] = array('weight'=> woocommerce_get_weight( (floatval($values['data']->get_weight())<=0  )?$this->default_weight:$values['data']->get_weight(), 'kg' ),
     							'quantity'=> $values['quantity'],
     							'length'=> $length,
     							'height'=> $height,
