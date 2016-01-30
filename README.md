@@ -51,8 +51,10 @@ This is a key that you must get it from Australian Post so you can use their API
 
 ## Changelog
 
+### 1.3.13
+* FIXED: Default weight issue.
 
-= 1.3.12 = 
+### 1.3.12
 * ADDED: Option to Enable/Disable shipping period on checkout page. 
 
 

@@ -17,14 +17,16 @@ Australian Post WooCommerce Extension is a Wordpress Plugin that integrate the A
 = Pro Features =
 [Upgrade to Pro](https://waseem-senjer.com/product/australia-post-woocommerce-extension-pro/ "Upgrade to Australia Post WooCommerce Shipping Pro")
 
-* Adding handling fees to every order.
+* Adding handling fees or discounts to every order.
 * Customized Domestic Shipping Options.
 * Customized International Shipping Options.
+* Letters Shipping Support
 * Showing all or the cheapest option to the user.
 * Sign On Delivery Option
-* Australia Post Domestic Satchels Support.
+* Australia Post Domestic Pre-paid Satchels Support.
 * Extra Cover (soon)
 * 24/7 priority support.
+* Lifetime Updates.
 
 [Documentation](https://waseem-senjer.com/plugins/auspost/docs/ "Documentation ")
 
@@ -70,6 +72,9 @@ This is a key that you must get it from Australian Post so you can use their API
 
 
 == Changelog ==
+
+= 1.3.13 = 
+* FIXED: Default weight issue.
 
 = 1.3.12 = 
 * ADDED: Option to Enable/Disable shipping period on checkout page. 
