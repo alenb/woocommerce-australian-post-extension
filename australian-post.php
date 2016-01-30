@@ -3,7 +3,7 @@
  * Plugin Name:       Australia Post WooCommerce Extension
  * Plugin URI:        https://waseem-senjer.com/
  * Description:       WooCommerce Australian Post Shipping Method.
- * Version:           1.3.12
+ * Version:           1.3.13
  * Author:            Waseem Senjer
  * Author URI:        https://waseem-senjer.com
  * Text Domain:       australian-post
