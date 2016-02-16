@@ -78,31 +78,36 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 							'title'             => __( 'Shop Origin Post Code', 'australian-post' ),
 							'type'              => 'text',
 							'description'       => __( 'Enter your Shop postcode.', 'australian-post' ),
-							'default'           => '2000'
+							'default'           => '2000',
+							'css'				=> 'width:100px;',
 					),
 					'default_weight' => array(
 							'title'             => __( 'Default Package Weight', 'australian-post' ),
 							'type'              => 'text',
 							'default'           => '0.5',
 							'description'       => __( $weight_unit , 'australian-post' ),
+							'css'				=> 'width:100px;',
 					),
 					'default_width' => array(
 							'title'             => __( 'Default Package Width', 'australian-post' ),
 							'type'              => 'text',
 							'default'           => '5',
 							'description'       => __( $dimensions_unit, 'australian-post' ),
+							'css'				=> 'width:100px;',
 					),
 					'default_height' => array(
 							'title'             => __( 'Default Package Height', 'australian-post' ),
 							'type'              => 'text',
 							'default'           => '5',
 							'description'       => __( $dimensions_unit, 'australian-post' ),
+							'css'				=> 'width:100px;',
 					),
 					'default_length' => array(
 							'title'             => __( 'Default Package Length', 'australian-post' ),
 							'type'              => 'text',
 							'default'           => '10',
 							'description'       => __( $dimensions_unit, 'australian-post' ),
+							'css'				=> 'width:100px;',
 					),
 					'debug_mode' => array(
 						'title' 		=> __( 'Enable Debug Mode', 'woocommerce' ),
@@ -148,7 +153,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 			    </div>
 			<?php endif; ?>
 			<a href="https://waseem-senjer.com/product/australia-post-woocommerce-extension-pro/" target="_blank">
-				<img style="z-index:99999; width:200px; position:fixed; bottom:5px; right:5px;" src="<?php echo AUSPOST_URL; ?>pro_version.png">
+				<img style="z-index:99999; width:200px; position:fixed; bottom:5px; right:5px;" src="<?php echo AUSPOST_LITE_URL; ?>pro_version.png">
 			</a>
 		<table class="form-table">
 		<?php
