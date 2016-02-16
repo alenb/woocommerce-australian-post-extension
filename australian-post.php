@@ -3,7 +3,7 @@
  * Plugin Name:       Australia Post WooCommerce Extension
  * Plugin URI:        https://waseem-senjer.com/
  * Description:       WooCommerce Australian Post Shipping Method.
- * Version:           1.3.13
+ * Version:           1.4.0
  * Author:            Waseem Senjer
  * Author URI:        https://waseem-senjer.com
  * Text Domain:       australian-post
@@ -24,7 +24,6 @@ if(auspost_is_auspost_pro_active()){
 }
 
 if(auspost_is_woocommerce_active()){
-	if(!class_exists('WC_Australian_Post_Shipping_Method')){
 		add_filter('woocommerce_shipping_methods', 'add_australian_post_method');
 		function add_australian_post_method( $methods ){
 			$methods[] = 'WC_Australian_Post_Shipping_Method';
@@ -35,7 +34,6 @@ if(auspost_is_woocommerce_active()){
 		function init_australian_post( ){
 			require 'class-australian-post.php';
 		}
-	}
 }
 
 

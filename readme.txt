@@ -4,7 +4,7 @@ Donate link: http://www.waseem-senjer.com
 Tags: woocommerce,shipping, woocommerce extension, australia, australian post,australia post,shipping method
 Requires at least: 3.5.1
 Tested up to: 4.4
-Stable tag: 1.3.13
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -73,8 +73,16 @@ This is a key that you must get it from Australian Post so you can use their API
 
 == Changelog ==
 
+= 1.4.0 = 
+* FIXED: Constant PHP conflict with the Pro version. 
+* FIXED: UI enhancements.
+* FIXED: Deactivating the Pro version on activation.
+* CHANGED: Adding the new features of the Pro plugin.
+
+
 = 1.3.13 = 
 * FIXED: Default weight issue.
+
 
 = 1.3.12 = 
 * ADDED: Option to Enable/Disable shipping period on checkout page. 

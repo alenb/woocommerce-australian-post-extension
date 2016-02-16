@@ -51,6 +51,12 @@ This is a key that you must get it from Australian Post so you can use their API
 
 ## Changelog
 
+### 1.4.0
+* FIXED: Constant PHP conflict with the Pro version. 
+* FIXED: UI enhancements.
+* FIXED: Deactivating the Pro version on activation.
+* CHANGED: Adding the new features of the Pro plugin.
+
 ### 1.3.13
 * FIXED: Default weight issue.
 
