@@ -54,3 +54,12 @@ function auspost_is_auspost_pro_active(){
 	
 	return in_array( 'woocommerce-australia-post-extension-pro/class-australian-post.php', $active_plugins ) || array_key_exists( 'woocommerce-australia-post-extension-pro/class-australian-post.php', $active_plugins );
 }
+
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'aupost_plugin_action_links' );
+
+function aupost_plugin_action_links( $links ) {
+   $links[] = '<a href="'. esc_url( get_admin_url(null, 'admin.php?page=wc-settings&tab=shipping&section=wc_australian_post_shipping_method') ) .'">Settings</a>';
+   $links[] = '<a href="https://waseem-senjer.com/product/australia-post-woocommerce-extension-pro/" target="_blank">Get the Pro version</a>';
+   $links[] = '<a href="https://waseem-senjer.com/submit-ticket/" target="_blank">Support</a>';
+   return $links;
+}

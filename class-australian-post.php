@@ -168,7 +168,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 			<ol>
 				<li><a target="_blank" href="http://auspost.com.au/parcels-mail/size-and-weight-guidelines.html">Weight and Size Guidlines </a>from Australia Post.</li>
 				
-				<li>If you encountered any problem with the plugin, please do not hesitate <a target="_blank" href="http://waseem-senjer.com/submit-ticket/">submitting a support ticket</a>.</li>
+				<li>If you encountered any problem with the plugin, please do not hesitate <a target="_blank" href="https://waseem-senjer.com/submit-ticket/">submitting a support ticket</a>.</li>
 				<li>If you like the plugin please leave me a <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/australian-post-woocommerce-extension?filter=5#postform">★★★★★</a> rating. A huge thank you from me in advance!</li>
 				
 			</ol>
