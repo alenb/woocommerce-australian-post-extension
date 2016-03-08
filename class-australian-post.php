@@ -12,8 +12,8 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 	
 	public function __construct(){
 		$this->id = 'auspost';
-		$this->method_title = __('Australian Post','australian-post');
-		$this->title = __('Australian Post','australian-post');
+		$this->method_title = __('Australia Post','australian-post');
+		$this->title = __('Australia Post','australian-post');
 		
 
 		$this->init_form_fields();
@@ -58,14 +58,14 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 					'enabled' => array(
 					'title' 		=> __( 'Enable/Disable', 'woocommerce' ),
 					'type' 			=> 'checkbox',
-					'label' 		=> __( 'Enable Australian Post', 'woocommerce' ),
+					'label' 		=> __( 'Enable Australia Post', 'woocommerce' ),
 					'default' 		=> 'yes'
 					),
 					'title' => array(
 						'title' 		=> __( 'Method Title', 'woocommerce' ),
 						'type' 			=> 'text',
 						'description' 	=> __( 'This controls the title', 'woocommerce' ),
-						'default'		=> __( 'Australian Post Shipping', 'woocommerce' ),
+						'default'		=> __( 'Australia Post Shipping', 'woocommerce' ),
 						'desc_tip'		=> true,
 					),
 					'api_key' => array(
