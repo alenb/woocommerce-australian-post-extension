@@ -1,11 +1,11 @@
 <?php
 /* @wordpress-plugin
  * Plugin Name:       Australia Post WooCommerce Extension
- * Plugin URI:        https://waseem-senjer.com/
- * Description:       WooCommerce Australian Post Shipping Method.
- * Version:           1.4.0
+ * Plugin URI:        https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/
+ * Description:       WooCommerce Australia Post Shipping Method.
+ * Version:           1.4.1
  * Author:            Waseem Senjer
- * Author URI:        https://waseem-senjer.com
+ * Author URI:        https://wpruby.com
  * Text Domain:       australian-post
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -59,7 +59,7 @@ add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'aupost_plugin_a
 
 function aupost_plugin_action_links( $links ) {
    $links[] = '<a href="'. esc_url( get_admin_url(null, 'admin.php?page=wc-settings&tab=shipping&section=wc_australian_post_shipping_method') ) .'">Settings</a>';
-   $links[] = '<a href="https://waseem-senjer.com/product/australia-post-woocommerce-extension-pro/" target="_blank">Get the Pro version</a>';
-   $links[] = '<a href="https://waseem-senjer.com/submit-ticket/" target="_blank">Support</a>';
+   $links[] = '<a href="https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/" target="_blank">Get the Pro version</a>';
+   $links[] = '<a href="https://wpruby.com/submit-ticket/" target="_blank">Support</a>';
    return $links;
 }

@@ -1,10 +1,10 @@
 === Australian Post WooCommerce Extension ===
 Contributors: waseem_senjer
-Donate link: http://www.waseem-senjer.com
+Donate link: https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/
 Tags: woocommerce,shipping, woocommerce extension, australia, australian post,australia post,shipping method
 Requires at least: 3.5.1
 Tested up to: 4.4
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ Australian Post WooCommerce Extension is a Wordpress Plugin that integrate the A
 Australian Post WooCommerce Extension is a Wordpress Plugin that integrate the Australian Post service, it will calculate the shipping cost and the delivery time for your customer. 
  
 = Pro Features =
-[Upgrade to Pro](https://waseem-senjer.com/product/australia-post-woocommerce-extension-pro/ "Upgrade to Australia Post WooCommerce Shipping Pro")
+[Upgrade to Pro](https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/ "Upgrade to Australia Post WooCommerce Shipping Pro")
 
 * Adding handling fees or discounts to every order.
 * Customized Domestic Shipping Options.
@@ -28,7 +28,7 @@ Australian Post WooCommerce Extension is a Wordpress Plugin that integrate the A
 * 24/7 priority support.
 * Lifetime Updates.
 
-[Documentation](https://waseem-senjer.com/plugins/auspost/docs/ "Documentation ")
+[Documentation](https://wpruby.com/knowledgebase_category/woocommerce-australia-post-shipping-method-pro/ "Documentation ")
 
 == Installation ==
 
@@ -72,6 +72,10 @@ This is a key that you must get it from Australian Post so you can use their API
 
 
 == Changelog ==
+
+= 1.4.1 =
+* ADDED: Help and Support links.
+* CHANGED: Pro version links after re-branding.
 
 = 1.4.0 = 
 * FIXED: Constant PHP conflict with the Pro version. 

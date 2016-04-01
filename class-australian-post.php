@@ -152,7 +152,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 			    	<p><?php _e( 'Austrlia Post debug mode is activated, only administrators can use it.', 'australian-post' ); ?></p>
 			    </div>
 			<?php endif; ?>
-			<a href="https://waseem-senjer.com/product/australia-post-woocommerce-extension-pro/" target="_blank">
+			<a href="https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/" target="_blank">
 				<img style="z-index:99999; width:200px; position:fixed; bottom:5px; right:5px;" src="<?php echo AUSPOST_LITE_URL; ?>pro_version.png">
 			</a>
 		<table class="form-table">
@@ -168,7 +168,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 			<ol>
 				<li><a target="_blank" href="http://auspost.com.au/parcels-mail/size-and-weight-guidelines.html">Weight and Size Guidlines </a>from Australia Post.</li>
 				
-				<li>If you encountered any problem with the plugin, please do not hesitate <a target="_blank" href="https://waseem-senjer.com/submit-ticket/">submitting a support ticket</a>.</li>
+				<li>If you encountered any problem with the plugin, please do not hesitate <a target="_blank" href="https://wpruby.com/submit-ticket/">submitting a support ticket</a>.</li>
 				<li>If you like the plugin please leave me a <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/australian-post-woocommerce-extension?filter=5#postform">★★★★★</a> rating. A huge thank you from me in advance!</li>
 				
 			</ol>

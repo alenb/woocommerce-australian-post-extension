@@ -1,6 +1,6 @@
 # Australian Post WooCommerce Extension
 * Contributors: waseem_senjer
-* Donate link: http://www.waseem-senjer.com
+* Donate link: https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/
 * Tags: woocommerce,shipping, woocommerce extension, australia, australian post
 * Requires at least: 3.5.1
 * Tested up to: 4.4
@@ -50,6 +50,10 @@ This is a key that you must get it from Australian Post so you can use their API
 
 
 ## Changelog
+
+###  1.4.1
+* ADDED: Help and Support links.
+* CHANGED: Pro version links after re-branding.
 
 ### 1.4.0
 * FIXED: Constant PHP conflict with the Pro version. 
