@@ -1,5 +1,5 @@
 === Australian Post WooCommerce Extension ===
-Contributors: waseem_senjer
+Contributors: waseem_senjer,wprubyplugins
 Donate link: https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/
 Tags: woocommerce,shipping, woocommerce extension, australia, australian post,australia post,shipping method
 Requires at least: 3.5.1

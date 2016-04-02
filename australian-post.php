@@ -4,7 +4,7 @@
  * Plugin URI:        https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/
  * Description:       WooCommerce Australia Post Shipping Method.
  * Version:           1.4.1
- * Author:            Waseem Senjer
+ * Author:            WPRuby
  * Author URI:        https://wpruby.com
  * Text Domain:       australian-post
  * License:           GPL-2.0+
