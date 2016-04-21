@@ -143,38 +143,103 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 	 * @return void
 	 */
 	public function admin_options() {
-
-		?>
-		<h3><?php _e( 'Austrlia Post Settings', 'woocommerce' ); ?></h3>
-			<?php if($this->debug_mode == 'yes'): ?>
-
+			?>
+		<h3><?php _e('Austrlia Post Settings', 'woocommerce');?></h3>
+			<?php if ($this->debug_mode == 'yes'): ?>
 				<div class="updated woocommerce-message">
-			    	<p><?php _e( 'Austrlia Post debug mode is activated, only administrators can use it.', 'australian-post' ); ?></p>
+			    	<p><?php _e('Austrlia Post debug mode is activated, only administrators can use it.', 'australian-post');?></p>
 			    </div>
-			<?php endif; ?>
-			<a href="https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/" target="_blank">
-				<img style="z-index:99999; width:200px; position:fixed; bottom:5px; right:5px;" src="<?php echo AUSPOST_LITE_URL; ?>pro_version.png">
-			</a>
-		<table class="form-table">
-		<?php
-			// Generate the HTML For the settings form.
-			$this->generate_settings_html();
-		?>
-		
-		</table><!--/.form-table-->
-		<p>
-			
-			<h3>Notes: </h3>
-			<ol>
-				<li><a target="_blank" href="http://auspost.com.au/parcels-mail/size-and-weight-guidelines.html">Weight and Size Guidlines </a>from Australia Post.</li>
-				
-				<li>If you encountered any problem with the plugin, please do not hesitate <a target="_blank" href="https://wpruby.com/submit-ticket/">submitting a support ticket</a>.</li>
-				<li>If you like the plugin please leave me a <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/australian-post-woocommerce-extension?filter=5#postform">★★★★★</a> rating. A huge thank you from me in advance!</li>
-				
-			</ol>
+			<?php endif;?>
+			<div id="poststuff">
+				<div id="post-body" class="metabox-holder columns-2">
+					<div id="post-body-content">
+						<table class="form-table">
+							<?php $this->generate_settings_html();?>
+						</table><!--/.form-table-->
+					</div>
+					<div id="postbox-container-1" class="postbox-container">
+	                        <div id="side-sortables" class="meta-box-sortables ui-sortable"> 
+	                            
+	                            <div class="postbox ">
+	                                <div class="handlediv" title="Click to toggle"><br></div>
+	                                <h3 class="hndle"><span><i class="dashicons dashicons-update"></i>&nbsp;&nbsp;Upgrade to Pro</span></h3>
+	                                <div class="inside">
+	                                    <div class="support-widget">
+	                                        <ul>
+	                                            <li>» International Shipping</li>
+	                                            <li>» Extra Cover Support</li>
+	                                            <li>» Letters Shipping Support</li>
+	                                            <li>» Signature on Delivery</li>
+	                                            <li>» PrePaid Satchels Support</li>
+	                                            <li>» Handling Fees Support</li>
+	                                            <li>» Dropshipping Support</li>
+	                                            <li>» Courier Shipping Support</li>
+	                                            <li>» Auto Hassle-Free Updates</li>
+	                                            <li>» High Priority Customer Support</li>
+	                                        </ul>
+											<a href="https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/" class="button wpruby_button" target="_blank"><span class="dashicons dashicons-star-filled"></span> Upgrade Now</a> 
+	                                    </div>
+	                                </div>
+	                            </div>
 
-			
-		</p>
+
+	                            <div class="postbox ">
+	                                <div class="handlediv" title="Click to toggle"><br></div>
+	                                <h3 class="hndle"><span><i class="fa fa-question-circle"></i>&nbsp;&nbsp;Plugin Support</span></h3>
+	                                <div class="inside">
+	                                    <div class="support-widget">
+	                                        <p>
+	                                        <img style="width:100%;" src="https://wpruby.com/wp-content/uploads/2016/03/wpruby_logo_with_ruby_color-300x88.png">
+	                                        <br/>
+	                                        Got a Question, Idea, Problem or Praise?</p>
+	                                        <ul>
+												<li>» <a target="_blank" href="http://auspost.com.au/parcels-mail/size-and-weight-guidelines.html">Weight and Size Guidlines</a> from Australia Post.</li>
+	                                            <li>» <a href="https://wpruby.com/submit-ticket/" target="_blank">Support Request</a></li>
+	                                            <li>» <a href="https://wpruby.com/knowledgebase_category/woocommerce-australia-post-shipping-method-pro/" target="_blank">Documentation and Common issues</a></li>
+	                                            <li>» <a href="https://wpruby.com/plugins/" target="_blank">Our Plugins Shop</a></li>
+	                                       		<li>» If you like the plugin please leave us a <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/australian-post-woocommerce-extension?filter=5#postform">★★★★★</a> rating.</li>
+	                                        </ul>
+
+	                                    </div>
+	                                </div>
+	                            </div>
+
+	                            <div class="postbox rss-postbox">
+	    							<div class="handlediv" title="Click to toggle"><br></div>
+	    								<h3 class="hndle"><span><i class="fa fa-wordpress"></i>&nbsp;&nbsp;WPRuby Blog</span></h3>
+	    								<div class="inside">
+											<div class="rss-widget">
+												<?php
+	    											wp_widget_rss_output(array(
+	    													'url' => 'https://wpruby.com/feed/',
+	    													'title' => 'WPRuby Blog',
+	    													'items' => 3,
+	    													'show_summary' => 0,
+	    													'show_author' => 0,
+	    													'show_date' => 1,
+	    											));
+	    										?>
+	    									</div>
+	    								</div>
+	    						</div>
+
+	                        </div>
+	                    </div>
+                    </div>
+				</div>
+				<div class="clear"></div>
+				<style type="text/css">
+					.wpruby_button{
+						background-color:#4CAF50 !important;
+						border-color:#4CAF50 !important;
+						color:#ffffff !important;
+						width:100%;
+						padding:5px !important;
+						text-align:center;
+						height:35px !important;
+						font-size:12pt !important;
+					}
+				</style>
 		<?php
 	}
 
@@ -196,8 +261,8 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 	public function calculate_shipping( $package ){
 		$package_details  =  $this->get_package_details( $package );
 		$this->rates = array();	
-		
-
+		// since 1.4.2 enhancing the debug mode.
+		$this->debug('Packing Details: <pre>' . print_r($package_details, true) . '</pre>');
 		$weight = 0;
 		$length = 0;
 		$width = 0;
@@ -238,6 +303,9 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 		foreach($this->supported_services as $service_key => $service_name):
 					$query_params['service_code'] = $service_key;
 					$response = wp_remote_get( $this->postageParcelURL.'?'.http_build_query($query_params),array('headers' => array('AUTH-KEY'=> $this->api_key)));
+					// since 1.4.2 enhancing the debug mode.
+					$this->debug('Australia Post RESPONSE: <pre>' . print_r($response, true) . '</pre>');
+					
 					if(is_wp_error( $response )){
 						return array('error' => 'Unknown Problem. Please Contact the admin');		
 					}
@@ -391,5 +459,18 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
   
     }
 
+	/**
+	 * Output a message
+	 */
+	public function debug($message, $type = 'notice') {
+		if ($this->debug_mode == 'yes' && current_user_can('manage_options')) {
+			if (version_compare(WOOCOMMERCE_VERSION, '2.1', '>=')) {
+				wc_add_notice($message, $type);
+			} else {
+				global $woocommerce;
+				$woocommerce->add_message($message);
+			}
+		}
+	}
 
 }

@@ -1,18 +1,18 @@
-# Australian Post WooCommerce Extension
+# Australia Post WooCommerce Extension
 * Contributors: waseem_senjer
 * Donate link: https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/
-* Tags: woocommerce,shipping, woocommerce extension, australia, australian post
+* Tags: woocommerce,shipping, woocommerce extension, australia, australian post,australia post, australia post shipping, australia post woocommerce
 * Requires at least: 3.5.1
 * Tested up to: 4.4
-* Stable tag: 1.3.13
+* Stable tag: 1.4.1
 * License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Australian Post WooCommerce Extension is a Wordpress Plugin that integrate the Australian Post service, it will calculate the shipping cost and the delivery time for your customer. 
+Australia Post WooCommerce Extension is a Wordpress Plugin that integrate the Australia Post service, it will calculate the shipping cost and the delivery time for your customer. 
 	
 
 ## Description
-Australian Post WooCommerce Extension is a Wordpress Plugin that integrate the Australian Post service, it will calculate the shipping cost and the delivery time for your customer. 
+Australia Post WooCommerce Extension is a Wordpress Plugin that integrate the Australia Post service, it will calculate the shipping cost and the delivery time for your customer. 
  
 
 ## Installation
@@ -22,7 +22,7 @@ Australian Post WooCommerce Extension is a Wordpress Plugin that integrate the A
 ### Using The WordPress Dashboard 
 
 1. Navigate to the 'Add New' in the plugins dashboard
-2. Search for 'Australian Post WooCommerce Extension'
+2. Search for 'Australia Post WooCommerce Extension'
 3. Click 'Install Now'
 4. Activate the plugin on the Plugin dashboard
 
@@ -45,7 +45,7 @@ Australian Post WooCommerce Extension is a Wordpress Plugin that integrate the A
 ##  Frequently Asked Questions
 
 ####  What is API key? 
-This is a key that you must get it from Australian Post so you can use their API, Get your key from https://developers.auspost.com.au/apis/pacpcs-registration
+This is a key that you must get it from Australia Post so you can use their API, Get your key from https://developers.auspost.com.au/apis/pacpcs-registration
 
 
 
