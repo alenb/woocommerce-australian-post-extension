@@ -167,13 +167,15 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 	                                    <div class="support-widget">
 	                                        <ul>
 	                                            <li>» International Shipping</li>
-	                                            <li>» Extra Cover Support</li>
-	                                            <li>» Letters Shipping Support</li>
-	                                            <li>» Signature on Delivery</li>
-	                                            <li>» PrePaid Satchels Support</li>
-	                                            <li>» Handling Fees Support</li>
+	                                            <li>» Customizable Domestic Shipping</li>
+	                                            <li>» Pre-Paid Domestic Satchels</li>
+	                                            <li>» Letters Shipping</li>
+	                                            <li>» Courier Shipping</li>
+	                                            <li>» Handling Fees and Discounts</li>
+	                                            <li>» Extra Cover</li>
+	                                            <li>» Signature On Delivery</li>
+	                                            <li>» Display the Cheapest option</li>
 	                                            <li>» Dropshipping Support</li>
-	                                            <li>» Courier Shipping Support</li>
 	                                            <li>» Auto Hassle-Free Updates</li>
 	                                            <li>» High Priority Customer Support</li>
 	                                        </ul>
