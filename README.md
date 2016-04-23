@@ -1,10 +1,10 @@
 # Australia Post WooCommerce Extension
-* Contributors: waseem_senjer
+* Contributors: waseem_senjer, wprubyplugins
 * Donate link: https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/
-* Tags: woocommerce,shipping, woocommerce extension, australia, australian post,australia post, australia post shipping, australia post woocommerce
+* Tags: woocommerce,shipping, woocommerce extension, australia, australian post,australia post, australia post shipping, australia post woocommerce,parcel shipping
 * Requires at least: 3.5.1
-* Tested up to: 4.4
-* Stable tag: 1.4.1
+* Tested up to: 4.5
+* Stable tag: 1.4.2
 * License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,10 @@ This is a key that you must get it from Australia Post so you can use their API,
 
 
 ## Changelog
+
+### 1.4.2
+* ADDED: Migrating to WPRuby
+* CHANGED: Australia Post Pro promotion.
 
 ###  1.4.1
 * ADDED: Help and Support links.
