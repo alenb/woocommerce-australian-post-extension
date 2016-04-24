@@ -17,16 +17,21 @@ Australia Post WooCommerce Extension is a Wordpress Plugin that integrate the Au
 = Pro Features =
 [Upgrade to Pro](https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/ "Upgrade to Australia Post WooCommerce Shipping Pro")
 
-* Adding handling fees or discounts to every order.
-* Customized Domestic Shipping Options.
-* Customized International Shipping Options.
-* Letters Shipping Support
-* Showing all or the cheapest option to the user.
-* Sign On Delivery Option
-* Australia Post Domestic Pre-paid Satchels Support.
-* Extra Cover (soon)
-* 24/7 priority support.
-* Lifetime Updates.
+
+* International Shipping.
+* Customized Domestic Shipping.
+* Pre-Paid Domestic Satchels.
+* Letters Shipping.
+* Courier Shipping.
+* Handling Fees and Discounts.
+* Extra Cover.
+* Signature On Delivery.
+* Display the Cheapest option.
+* Dropshipping Support.
+* Packing Helper Guide.
+* 24/7 Priority Support.
+* Regular Updates.
+* 30 Days Money-Back Guarantee.
 
 [Documentation](https://wpruby.com/knowledgebase_category/woocommerce-australia-post-shipping-method-pro/ "Documentation ")
 
