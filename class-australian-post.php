@@ -4,8 +4,8 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 
 
 
-	public $postageParcelURL = 'http://auspost.com.au/api/postage/parcel/domestic/calculate.json';
-	public $postage_intl_url = 'https://auspost.com.au/api/postage/parcel/international/service.json';
+	public $postageParcelURL = 'https://digitalapi.auspost.com.au/postage/parcel/domestic/calculate.json';
+	public $postage_intl_url = 'https://digitalapi.auspost.com.au/postage/parcel/international/service.json';
 	public $api_key = '20b5d076-5948-448f-9be4-f2fd20d4c258';
 	public $supported_services = array( 'AUS_PARCEL_REGULAR' => 'Parcel Post',
 										'AUS_PARCEL_EXPRESS' => 'Express Post');
@@ -304,6 +304,8 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 		$query_params['weight'] = $weight;
 		foreach($this->supported_services as $service_key => $service_name):
 					$query_params['service_code'] = $service_key;
+					$this->debug('Packing Request: <pre>' . print_r($this->postageParcelURL.'?'.http_build_query($query_params), true) . '</pre>');
+					
 					$response = wp_remote_get( $this->postageParcelURL.'?'.http_build_query($query_params),array('headers' => array('AUTH-KEY'=> $this->api_key)));
 					// since 1.4.2 enhancing the debug mode.
 					$this->debug('Australia Post RESPONSE: <pre>' . print_r($response, true) . '</pre>');
@@ -316,7 +318,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 					
 
 					
-					if(!isset($aus_response->error)){
+					if(!isset($aus_response->error) && $aus_response != null){
 						$duration = '';
 						if($this->show_duration === 'yes'){
 							$duration = ' ('. $aus_response->postage_result->delivery_time .')';
@@ -324,6 +326,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 
 						$old_rate = (isset($old_rates[$service_key]['cost']))?$old_rates[$service_key]['cost']:0;
 						// add the rate if the API request succeeded
+						
 						$rates[$service_key] = array(
 								'id' => $service_key,
 								'label' => $this->title. ' ' . $aus_response->postage_result->service.' ' . $duration,
