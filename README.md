@@ -71,6 +71,11 @@ This is a key that you must get it from Australia Post so you can use their API,
 
 
 ## Changelog
+### 1.4.4 
+* FIXED: calculations for products with high dimensions.
+
+### 1.4.3 
+* Add the new API URL. The old one is withdarawn.
 
 ### 1.4.2
 * ADDED: Migrating to WPRuby
