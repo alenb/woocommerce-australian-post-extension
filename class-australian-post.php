@@ -7,8 +7,10 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 	public $postageParcelURL = 'https://digitalapi.auspost.com.au/postage/parcel/domestic/calculate.json';
 	public $postage_intl_url = 'https://digitalapi.auspost.com.au/postage/parcel/international/service.json';
 	public $api_key = '20b5d076-5948-448f-9be4-f2fd20d4c258';
-	public $supported_services = array( 'AUS_PARCEL_REGULAR' => 'Parcel Post',
-										'AUS_PARCEL_EXPRESS' => 'Express Post');
+	public $supported_services = array( 
+		'AUS_PARCEL_REGULAR' => 'Parcel Post',
+		'AUS_PARCEL_EXPRESS' => 'Express Post'
+	);
 	
 	public function __construct(){
 		$this->id = 'auspost';
@@ -36,10 +38,6 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 		$this->debug_mode = $this->get_option('debug_mode');
 		
 		
-		
-
-
-
 		add_action('woocommerce_update_options_shipping_'.$this->id, array($this, 'process_admin_options'));
 
 
@@ -128,13 +126,8 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 
 
 			 );
-		
-		
-
 	}
 
-	
-	
 	/**
 	 * Admin Panel Options
 	 * - Options for bits like 'title' and availability on a country-by-country basis
@@ -389,7 +382,6 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
     		$height = woocommerce_get_dimension( ($values['data']->height=='')?$this->default_height:$values['data']->height, 'cm' );
     		$width = woocommerce_get_dimension( ($values['data']->width=='')?$this->default_width:$values['data']->width, 'cm' );
     		$min_dimension = $this->get_min_dimension( $width, $length, $height );
-			//$$min_dimension = $$min_dimension * $values['quantity'];
     		$products[] = array('weight'=> woocommerce_get_weight( (floatval($values['data']->get_weight())<=0  )?$this->default_weight:$values['data']->get_weight(), 'kg' ),
     							'quantity'=> $values['quantity'],
     							'length'=> $length,
@@ -401,7 +393,6 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
     	}
 
     	$max_weight = $this->get_max_weight($package);
-    	//if($weight > $max_weight){
     	
 	    	$pack = array();
 			$packs_count = 1;
@@ -415,32 +406,25 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 					if(!isset($pack[$packs_count]['weight'])){
 						$pack[$packs_count]['weight'] = 0;
 					}
-					if(!isset($pack[$packs_count]['quantity'])){
-						//$pack[$packs_count]['quantity'] = 0;
-					}
 					$pack[$packs_count]['weight'] += $product['weight'];
-					$pack[$packs_count]['length'] =1;// $product['length'];
-					$pack[$packs_count]['height'] =1;// $product['height'];
-					$pack[$packs_count]['width']  =1;//  $product['width'];
+					$pack[$packs_count]['length'] = $product['length'];
+					$pack[$packs_count]['height'] = $product['height'];
+					$pack[$packs_count]['width']  = $product['width'];
 					$pack[$packs_count]['item_id'] =  $product['item_id'];
-					//$pack[$packs_count]['quantity'] +=  $product['quantity'];
 
 					if($pack[$packs_count]['weight'] > $max_weight ){
 						$pack[$packs_count]['weight'] -=  $product['weight'];
-						//$pack[$packs_count]['quantity'] -=  $product['quantity'];
 						$packs_count++;
 						$pack[$packs_count]['weight'] = $product['weight'];
 						$pack[$packs_count]['length'] =1;// $product['length'];
 						$pack[$packs_count]['height'] =1;// $product['height'];
 						$pack[$packs_count]['width'] =1;// $product['width'];
 						$pack[$packs_count]['item_id'] =  $product['item_id'];
-						//$pack[$packs_count]['quantity'] =  $product['quantity'];
 					
 					}
 					$product['quantity']--;
 				}
 			}
-		//}
 			
     	return $pack;
     }

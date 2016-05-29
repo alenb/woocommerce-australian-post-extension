@@ -4,7 +4,7 @@ Donate link: https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/
 Tags: woocommerce,shipping, woocommerce extension, australia, australian post,australia post,shipping method, parcel shipping, letter shipping, extra cover
 Requires at least: 3.5.1
 Tested up to: 4.5
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,10 @@ This is a key that you must get it from Australia Post so you can use their API,
 
 
 == Changelog ==
+
+= 1.4.3 =
+* Add the new API URL. The old one is withdarawn.
+
 = 1.4.2 = 
 * Migrating to WPRuby
 * Changing Pro promotion.
