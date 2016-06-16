@@ -4,7 +4,7 @@
 * Tags: woocommerce,shipping, woocommerce extension, australia, australian post,australia post, australia post shipping, australia post woocommerce,parcel shipping
 * Requires at least: 3.5.1
 * Tested up to: 4.5
-* Stable tag: 1.4.2
+* Stable tag: 1.5.0
 * License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -71,6 +71,10 @@ This is a key that you must get it from Australia Post so you can use their API,
 
 
 ## Changelog
+
+### 1.5.0
+* ADDED: Compatibility with WooCommerce Shipping Zones which introduced in WC 2.6.0
+
 ### 1.4.4 
 * FIXED: calculations for products with high dimensions.
 
