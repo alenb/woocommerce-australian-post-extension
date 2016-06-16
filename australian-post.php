@@ -26,7 +26,7 @@ if(auspost_is_auspost_pro_active()){
 if(auspost_is_woocommerce_active()){
 		add_filter('woocommerce_shipping_methods', 'add_australian_post_method');
 		function add_australian_post_method( $methods ){
-			$methods[] = 'WC_Australian_Post_Shipping_Method';
+			$methods['auspost'] = 'WC_Australian_Post_Shipping_Method';
 			return $methods; 
 		}
 
@@ -62,4 +62,15 @@ function aupost_plugin_action_links( $links ) {
    $links[] = '<a href="https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/" target="_blank">Get the Pro version</a>';
    $links[] = '<a href="https://wpruby.com/submit-ticket/" target="_blank">Support</a>';
    return $links;
+}
+
+function is_embed() {
+    global $wp_query;
+ 
+    if ( ! isset( $wp_query ) ) {
+        _doing_it_wrong( __FUNCTION__, __( 'Conditional query tags do not work before the query is run. Before then, they always return false.' ), '3.1' );
+        return false;
+    }
+ 
+    return $wp_query->is_embed();
 }

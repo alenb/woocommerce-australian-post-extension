@@ -12,12 +12,17 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 		'AUS_PARCEL_EXPRESS' => 'Express Post'
 	);
 	
-	public function __construct(){
+	public function __construct( $instance_id = 0 ){
 		$this->id = 'auspost';
+		$this->instance_id = absint( $instance_id );
 		$this->method_title = __('Australia Post','australian-post');
 		$this->title = __('Australia Post','australian-post');
 		
-
+		$this->supports  = array(
+			'shipping-zones',
+			'instance-settings',
+			'instance-settings-modal',
+		);
 		$this->init_form_fields();
 		$this->init_settings();
 
@@ -52,13 +57,6 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 				$weight_unit = strtolower( get_option( 'woocommerce_weight_unit' ) );
 				
 				$this->form_fields = array(
-
-					'enabled' => array(
-					'title' 		=> __( 'Enable/Disable', 'woocommerce' ),
-					'type' 			=> 'checkbox',
-					'label' 		=> __( 'Enable Australia Post', 'woocommerce' ),
-					'default' 		=> 'yes'
-					),
 					'title' => array(
 						'title' 		=> __( 'Method Title', 'woocommerce' ),
 						'type' 			=> 'text',
@@ -253,7 +251,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 
 	}
 
-	public function calculate_shipping( $package ){
+	public function calculate_shipping( $package = array() ){
 		$package_details  =  $this->get_package_details( $package );
 		$this->rates = array();	
 		// since 1.4.2 enhancing the debug mode.
@@ -277,6 +275,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 		
 		if(!empty($rates)){
 			foreach ($rates as $key => $rate) {
+				$rate['package'] = $package;
 				$this->add_rate($rate);
 			}
 		}
