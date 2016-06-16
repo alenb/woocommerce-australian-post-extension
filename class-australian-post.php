@@ -53,77 +53,73 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 
 	public function init_form_fields(){
 		
-				$dimensions_unit = strtolower( get_option( 'woocommerce_dimension_unit' ) );
-				$weight_unit = strtolower( get_option( 'woocommerce_weight_unit' ) );
-				
-				$this->form_fields = array(
-					'title' => array(
-						'title' 		=> __( 'Method Title', 'woocommerce' ),
-						'type' 			=> 'text',
-						'description' 	=> __( 'This controls the title', 'woocommerce' ),
-						'default'		=> __( 'Australia Post Shipping', 'woocommerce' ),
-						'desc_tip'		=> true,
-					),
-					'api_key' => array(
-							'title'             => __( 'API Key', 'australian-post' ),
-							'type'              => 'text',
-							'description'       => __( 'Get your key from <a target="_blank" href="https://developers.auspost.com.au/apis/pacpcs-registration">https://developers.auspost.com.au/apis/pacpcs-registration</a>', 'australian-post' ),
-							'default'           => $this->api_key
-					),
-					'shop_post_code' => array(
-							'title'             => __( 'Shop Origin Post Code', 'australian-post' ),
-							'type'              => 'text',
-							'description'       => __( 'Enter your Shop postcode.', 'australian-post' ),
-							'default'           => '2000',
-							'css'				=> 'width:100px;',
-					),
-					'default_weight' => array(
-							'title'             => __( 'Default Package Weight', 'australian-post' ),
-							'type'              => 'text',
-							'default'           => '0.5',
-							'description'       => __( $weight_unit , 'australian-post' ),
-							'css'				=> 'width:100px;',
-					),
-					'default_width' => array(
-							'title'             => __( 'Default Package Width', 'australian-post' ),
-							'type'              => 'text',
-							'default'           => '5',
-							'description'       => __( $dimensions_unit, 'australian-post' ),
-							'css'				=> 'width:100px;',
-					),
-					'default_height' => array(
-							'title'             => __( 'Default Package Height', 'australian-post' ),
-							'type'              => 'text',
-							'default'           => '5',
-							'description'       => __( $dimensions_unit, 'australian-post' ),
-							'css'				=> 'width:100px;',
-					),
-					'default_length' => array(
-							'title'             => __( 'Default Package Length', 'australian-post' ),
-							'type'              => 'text',
-							'default'           => '10',
-							'description'       => __( $dimensions_unit, 'australian-post' ),
-							'css'				=> 'width:100px;',
-					),
-					'debug_mode' => array(
-						'title' 		=> __( 'Enable Debug Mode', 'woocommerce' ),
-						'type' 			=> 'checkbox',
-						'label' 		=> __( 'Enable ', 'woocommerce' ),
-						'default' 		=> 'no',
-						'description'	=> __('If debug mode is enabled, the shipping method will be activated just for the administrator.'),
-					),
-					'show_duration' => array(
-						'title' 		=> __( 'Delivery Time', 'woocommerce' ),
-						'type' 			=> 'checkbox',
-						'label' 		=> __( 'Enable ', 'woocommerce' ),
-						'default' 		=> 'yes',
-						'description'	=> __( 'Show Delivery Time Estimation in the Checkout page.', 'woocommerce' ),
-					),
-
-
-
-
-			 );
+		$dimensions_unit = strtolower( get_option( 'woocommerce_dimension_unit' ) );
+		$weight_unit = strtolower( get_option( 'woocommerce_weight_unit' ) );
+		
+		$this->instance_form_fields = array(
+			'title' => array(
+				'title' 		=> __( 'Method Title', 'woocommerce' ),
+				'type' 			=> 'text',
+				'description' 	=> __( 'This controls the title', 'woocommerce' ),
+				'default'		=> __( 'Australia Post Shipping', 'woocommerce' ),
+				'desc_tip'		=> true,
+			),
+			'api_key' => array(
+					'title'             => __( 'API Key', 'australian-post' ),
+					'type'              => 'text',
+					'description'       => __( 'Get your key from <a target="_blank" href="https://developers.auspost.com.au/apis/pacpcs-registration">https://developers.auspost.com.au/apis/pacpcs-registration</a>', 'australian-post' ),
+					'default'           => $this->api_key
+			),
+			'shop_post_code' => array(
+					'title'             => __( 'Shop Origin Post Code', 'australian-post' ),
+					'type'              => 'text',
+					'description'       => __( 'Enter your Shop postcode.', 'australian-post' ),
+					'default'           => '2000',
+					'css'				=> 'width:100px;',
+			),
+			'default_weight' => array(
+					'title'             => __( 'Default Package Weight', 'australian-post' ),
+					'type'              => 'text',
+					'default'           => '0.5',
+					'description'       => __( $weight_unit , 'australian-post' ),
+					'css'				=> 'width:100px;',
+			),
+			'default_width' => array(
+					'title'             => __( 'Default Package Width', 'australian-post' ),
+					'type'              => 'text',
+					'default'           => '5',
+					'description'       => __( $dimensions_unit, 'australian-post' ),
+					'css'				=> 'width:100px;',
+			),
+			'default_height' => array(
+					'title'             => __( 'Default Package Height', 'australian-post' ),
+					'type'              => 'text',
+					'default'           => '5',
+					'description'       => __( $dimensions_unit, 'australian-post' ),
+					'css'				=> 'width:100px;',
+			),
+			'default_length' => array(
+					'title'             => __( 'Default Package Length', 'australian-post' ),
+					'type'              => 'text',
+					'default'           => '10',
+					'description'       => __( $dimensions_unit, 'australian-post' ),
+					'css'				=> 'width:100px;',
+			),
+			'debug_mode' => array(
+				'title' 		=> __( 'Enable Debug Mode', 'woocommerce' ),
+				'type' 			=> 'checkbox',
+				'label' 		=> __( 'Enable ', 'woocommerce' ),
+				'default' 		=> 'no',
+				'description'	=> __('If debug mode is enabled, the shipping method will be activated just for the administrator.'),
+			),
+			'show_duration' => array(
+				'title' 		=> __( 'Delivery Time', 'woocommerce' ),
+				'type' 			=> 'checkbox',
+				'label' 		=> __( 'Enable ', 'woocommerce' ),
+				'default' 		=> 'yes',
+				'description'	=> __( 'Show Delivery Time Estimation in the Checkout page.', 'woocommerce' ),
+			),
+	 );
 	}
 
 	/**
@@ -145,7 +141,7 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 				<div id="post-body" class="metabox-holder columns-2">
 					<div id="post-body-content">
 						<table class="form-table">
-							<?php $this->generate_settings_html();?>
+							<?php echo $this->get_admin_options_html();?>
 						</table><!--/.form-table-->
 					</div>
 					<div id="postbox-container-1" class="postbox-container">
