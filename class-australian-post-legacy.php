@@ -41,6 +41,12 @@ class WC_Australian_Post_Shipping_Method_Legacy extends WC_Australian_Post_Shipp
 		$weight_unit = strtolower( get_option( 'woocommerce_weight_unit' ) );
 		
 		$this->form_fields = array(
+			'enabled' => array(
+				'title' => __('Enable/Disable', 'woocommerce'),
+				'type' => 'checkbox',
+				'label' => __('Enable Australia Post', 'woocommerce'),
+				'default' => 'no',
+			),
 			'title' => array(
 				'title' 		=> __( 'Method Title', 'woocommerce' ),
 				'type' 			=> 'text',
