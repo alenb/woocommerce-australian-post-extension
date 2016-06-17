@@ -4,7 +4,7 @@ Donate link: https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/
 Tags: woocommerce,admin,shipping,shipping method, woocommerce extension, australia, australia post,australia post,shipping method, parcel shipping, letter shipping, extra cover
 Requires at least: 3.5.1
 Tested up to: 4.5.2
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,8 @@ Australia Post WooCommerce Extension is a Wordpress Plugin that integrate the Au
 == Description ==
 Australia Post WooCommerce Extension is a Wordpress Plugin that integrate the Australia Post service, it will calculate the shipping cost and the delivery time for your customer. 
  
+* The plugin supports The new Shipping Zones which introduced in WooCommerce 2.6.0
+
 = Pro Features =
 [Upgrade to Pro](https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/ "Upgrade to Australia Post WooCommerce Shipping Pro")
 
@@ -77,6 +79,9 @@ This is a key that you must get it from Australia Post so you can use their API,
 
 
 == Changelog ==
+
+= 1.5.1 =
+* ADDED: Compatibility for Legacy shipping methods for WooCommerce less than 2.6
 
 = 1.5.0 =
 * ADDED: Compatibility with WooCommerce Shipping Zones which introduced in WC 2.6.0
