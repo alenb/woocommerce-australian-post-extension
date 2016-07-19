@@ -267,7 +267,9 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 		
 		if(!empty($rates)){
 			foreach ($rates as $key => $rate) {
-				$rate['package'] = $package;
+				if(is_array($rate)){
+					$rate['package'] = $package;
+				}
 				$this->add_rate($rate);
 			}
 		}
@@ -391,7 +393,6 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method{
 			$pack[$packs_count]['length'] = 0;
 			$pack[$packs_count]['height'] = 0;
 			$pack[$packs_count]['width'] = 0;
-			//$pack[$packs_count]['quantity'] = 0;
 			foreach ($products as $product){
 				while ($product['quantity'] != 0) {
 					if(!isset($pack[$packs_count]['weight'])){

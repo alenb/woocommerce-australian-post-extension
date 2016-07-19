@@ -3,8 +3,8 @@ Contributors: waseem_senjer,wprubyplugins
 Donate link: https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/
 Tags: woocommerce,admin,shipping,shipping method, woocommerce extension, australia, australia post,australia post,shipping method, parcel shipping, letter shipping, extra cover
 Requires at least: 3.5.1
-Tested up to: 4.5.2
-Stable tag: 1.5.1
+Tested up to: 4.5.3
+Stable tag: 1.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -79,6 +79,9 @@ This is a key that you must get it from Australia Post so you can use their API,
 
 
 == Changelog ==
+
+= 1.5.2 =
+* FIXED: PHP warning message at the cart page.
 
 = 1.5.1 =
 * ADDED: Compatibility for Legacy shipping methods for WooCommerce less than 2.6
