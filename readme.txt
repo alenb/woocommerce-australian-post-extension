@@ -80,6 +80,10 @@ This is a key that you must get it from Australia Post so you can use their API,
 
 == Changelog ==
 
+= 1.5.3 = 
+* REMOVED: invalid settings page URL in the Plugins page.
+* ADDED: support for WordPress 4.6
+
 = 1.5.2 =
 * FIXED: PHP warning message at the cart page.
 

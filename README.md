@@ -3,8 +3,8 @@
 * Donate link: https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/
 * Tags: woocommerce,shipping, woocommerce extension, australia, australian post,australia post, australia post shipping, australia post woocommerce,parcel shipping
 * Requires at least: 3.5.1
-* Tested up to: 4.5.3
-* Stable tag: 1.5.2
+* Tested up to: 4.6
+* Stable tag: 1.5.3
 * License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -73,6 +73,12 @@ This is a key that you must get it from Australia Post so you can use their API,
 
 
 ## Changelog
+
+
+### 1.5.3
+* REMOVED: invalid settings page URL in the Plugins page.
+* ADDED: support for WordPress 4.6
+
 
 ### 1.5.2
 * FIXED: PHP warning message at the cart page.
