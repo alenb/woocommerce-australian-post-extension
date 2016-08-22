@@ -65,7 +65,6 @@ function auspost_is_auspost_pro_active(){
 add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'aupost_plugin_action_links' );
 
 function aupost_plugin_action_links( $links ) {
-   $links[] = '<a href="'. esc_url( get_admin_url(null, 'admin.php?page=wc-settings&tab=shipping&section=wc_australian_post_shipping_method') ) .'">Settings</a>';
    $links[] = '<a href="https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/" target="_blank">Get the Pro version</a>';
    $links[] = '<a href="https://wpruby.com/submit-ticket/" target="_blank">Support</a>';
    return $links;
