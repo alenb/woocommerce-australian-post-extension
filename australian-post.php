@@ -3,7 +3,7 @@
  * Plugin Name:       Australia Post WooCommerce Extension
  * Plugin URI:        https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/
  * Description:       WooCommerce Australia Post Shipping Method.
- * Version:           1.5.2
+ * Version:           1.5.3
  * Author:            WPRuby
  * Author URI:        https://wpruby.com
  * Text Domain:       australian-post
