@@ -16,40 +16,34 @@
 define('AUSPOST_LITE_URL', plugin_dir_url(__FILE__));
 
 // deactivate the pro version
-if(auspost_is_auspost_pro_active()){
-	function auspost_deactivate_pro_version() {
-	  deactivate_plugins( 'woocommerce-australia-post-extension-pro/class-australian-post.php' );
-	}
+if ( auspost_is_auspost_pro_active() ) {
 	add_action( 'admin_init', 'auspost_deactivate_pro_version' );
 }
 
-if(auspost_is_woocommerce_active()){
-		add_filter('woocommerce_shipping_methods', 'add_australian_post_method');
-		function add_australian_post_method( $methods ){
-			if(version_compare(WC()->version, '2.6.0', 'lt')){
-				$methods['auspost'] = 'WC_Australian_Post_Shipping_Method_Legacy';
-			}else{
-				$methods['auspost'] = 'WC_Australian_Post_Shipping_Method';
-			}
-			return $methods; 
-		}
-
-		add_action('woocommerce_shipping_init', 'init_australian_post');
-		function init_australian_post( ){
-			require 'class-australian-post.php';
-			if(version_compare(WC()->version, '2.6.0', 'lt')){
-				require 'class-australian-post-legacy.php';
-			}
-		}
+if ( auspost_is_woocommerce_active() ) {
+	add_filter( 'woocommerce_shipping_methods', 'add_australian_post_method' );
+	add_action( 'woocommerce_shipping_init', 'init_australian_post' );
 }
 
+function auspost_deactivate_pro_version() {
+    deactivate_plugins( 'woocommerce-australia-post-extension-pro/class-australian-post.php' );
+}
+
+function add_australian_post_method( $methods ) {
+    $methods['auspost'] = 'WC_Australian_Post_Shipping_Method';
+	return $methods;
+}
+
+function init_australian_post( ){
+    require 'class-australian-post.php';
+}
 
 function auspost_is_woocommerce_active(){
 	$active_plugins = (array) get_option( 'active_plugins', array() );
 
 	if ( is_multisite() )
 		$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
-	
+
 	return in_array( 'woocommerce/woocommerce.php', $active_plugins ) || array_key_exists( 'woocommerce/woocommerce.php', $active_plugins );
 }
 
@@ -58,7 +52,7 @@ function auspost_is_auspost_pro_active(){
 
 	if ( is_multisite() )
 		$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
-	
+
 	return in_array( 'woocommerce-australia-post-extension-pro/class-australian-post.php', $active_plugins ) || array_key_exists( 'woocommerce-australia-post-extension-pro/class-australian-post.php', $active_plugins );
 }
 
