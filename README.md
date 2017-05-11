@@ -19,6 +19,7 @@ Australia Post WooCommerce Extension is a Wordpress Plugin that integrate the Au
 ## Features
 
 * Signature On Delivery.
+* Extra Cover.
 
 ## Pro Features
 [Upgrade to Pro](https://wpruby.com/plugin/australia-post-woocommerce-extension-pro/ "Upgrade to Australia Post WooCommerce Shipping Pro")
@@ -30,7 +31,6 @@ Australia Post WooCommerce Extension is a Wordpress Plugin that integrate the Au
 * Letters Shipping.
 * Courier Shipping.
 * Handling Fees and Discounts.
-* Extra Cover.
 * Display the Cheapest option.
 * Dropshipping Support.
 * Packing Helper Guide.
