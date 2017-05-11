@@ -33,6 +33,8 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method {
         $this->default_width = $this->get_option('default_width');
         $this->default_length = $this->get_option('default_length');
         $this->default_height = $this->get_option('default_height');
+        $this->default_extra_cover = $this->get_option('default_extra_cover');
+        $this->extra_cover = $this->get_option('extra_cover');
         $this->signature_on_delivery = $this->get_option('signature_on_delivery');
         $this->show_duration = $this->get_option( 'show_duration' );
 
@@ -94,6 +96,20 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method {
                 'default'           => '10',
                 'description'       => __( $dimensions_unit, 'australian-post' ),
                 'css'               => 'width:100px;',
+            ),
+            'default_extra_cover' => array(
+                'title'             => __( 'Default Extra Cover', 'australian-post' ),
+                'type'              => 'text',
+                'default'           => '100',
+                'description'       => __( 'The dollar amount of the extra cover required.', 'australian-post' ),
+                'css'               => 'width:100px;',
+            ),
+            'extra_cover' => array(
+                'title'             => __( 'Extra Cover', 'woocommerce' ),
+                'type'              => 'checkbox',
+                'label'             => __( 'Enable ', 'woocommerce' ),
+                'default'           => 'no',
+                'description'       => __('If extra cover is enabled, it adds the extra cover cost on top of the shipping cost.'),
             ),
             'signature_on_delivery' => array(
                 'title'             => __( 'Signature On Delivery', 'woocommerce' ),
@@ -283,13 +299,16 @@ class WC_Australian_Post_Shipping_Method extends WC_Shipping_Method {
         $query_params['height'] = $height;
         $query_params['weight'] = $weight;
 
-        if ( $this->signature_on_delivery )
+        if ( $this->extra_cover == 'yes' ) {
+            $query_params['suboption_code'] = 'AUS_SERVICE_OPTION_EXTRA_COVER';
+            $query_params['extra_cover'] = $this->default_extra_cover;
+        }
+
+        if ( $this->signature_on_delivery == 'yes' )
             $query_params['option_code'] = 'AUS_SERVICE_OPTION_SIGNATURE_ON_DELIVERY';
 
         foreach ( $this->supported_services as $service_key => $service_name ) {
             $query_params['service_code'] = $service_key;
-
-
 
             $this->debug('Packing Request: <pre>' . print_r( $this->postageParcelURL . '?' . http_build_query( $query_params ), true ) . '</pre>');
 
